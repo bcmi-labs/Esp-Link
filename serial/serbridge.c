@@ -11,6 +11,8 @@
 #include "slip.h"
 #include "cmd.h"
 
+static sint8 espbuffsend(serbridgeConnData *conn, const char *data, uint16 len);
+
 #define SKIP_AT_RESET
 
 static struct espconn serbridgeConn1; // plain bridging port
@@ -151,12 +153,45 @@ serbridgeReset()
 #endif
 }
 
+static bool pingEnabled = 0;
+static bool pingSuccess = 0;
+static os_timer_t pingTimer;
+
+// Periodically ping the AVR so it doesn't fall out of sync
+static void ICACHE_FLASH_ATTR
+pingAVR(void *arg)
+{
+  if (!pingEnabled) return;
+  //os_printf("ping\n");
+  uart0_tx_buffer("\x30\x20", 2);
+  os_timer_disarm(&pingTimer);
+  os_timer_arm(&pingTimer, 20, 0);
+}
+
+static void ICACHE_FLASH_ATTR
+pingAVR2(void)
+{
+  if (!pingSuccess) os_printf("Ping success\n");
+  pingSuccess = true;
+}
+
+static void ICACHE_FLASH_ATTR
+pingStart(void)
+{
+  os_printf("AVR1\n");
+  pingEnabled = 1;
+  pingSuccess = 0;
+  os_timer_disarm(&pingTimer);
+  os_timer_setfn(&pingTimer, pingAVR, 0);
+  os_timer_arm(&pingTimer, 10, 0);
+}
+
 // Receive callback
 static void ICACHE_FLASH_ATTR
 serbridgeRecvCb(void *arg, char *data, unsigned short len)
 {
   serbridgeConnData *conn = ((struct espconn*)arg)->reverse;
-  //os_printf("Receive callback on conn %p\n", conn);
+  if (pingEnabled) os_printf("Rcv conn %p l=%d\n", conn, len);
   if (conn == NULL) return;
 
   bool startPGM = false;
@@ -170,11 +205,15 @@ serbridgeRecvCb(void *arg, char *data, unsigned short len)
   if (conn->conn_mode == cmInit) {
 
     // If the connection starts with the Arduino or ARM reset sequence we perform a RESET
-    if ((len == 2 && strncmp(data, "0 ", 2) == 0) ||
-        (len == 2 && strncmp(data, "?\n", 2) == 0) ||
-        (len == 3 && strncmp(data, "?\r\n", 3) == 0)) {
+    if ((len == 2 && strncmp(data, "0 ", 2) == 0)) {
       startPGM = true;
-      conn->conn_mode = cmPGM;
+      conn->conn_mode = cmAVR1; // enter special AVR sync mode
+      pingStart();
+    }
+    else if((len == 2 && strncmp(data, "?\n", 2) == 0) ||
+            (len == 3 && strncmp(data, "?\r\n", 3) == 0)) {
+      startPGM = true;
+      conn->conn_mode = cmARM;
 
     // If the connection starts with a telnet negotiation we will do telnet
     }
@@ -195,8 +234,29 @@ serbridgeRecvCb(void *arg, char *data, unsigned short len)
   // if we start out in cmPGM mode due to a connection to the second port we need to do the
   // reset dance right away
   } else if (conn->conn_mode == cmPGMInit) {
-    conn->conn_mode = cmPGM;
+    if ((len == 2 && strncmp(data, "0 ", 2) == 0)) {
+      conn->conn_mode = cmAVR1; // enter special AVR sync mode
+      pingStart();
+    } else {
+      conn->conn_mode = cmARM; // don't do any special AVR sync games
+    }
     startPGM = true;
+  } else if (conn->conn_mode == cmAVR1) {
+    conn->conn_mode = cmAVR2;
+    os_printf("AVR2\n");
+    if (len == 2) return;
+    conn->conn_mode = cmAVR3;
+    os_printf("AVR2+3\n");
+    if (pingSuccess) espbuffsend(conn, "\x14\x10", 2);
+  } else if (conn->conn_mode == cmAVR2) {
+    conn->conn_mode = cmAVR3;
+    os_printf("AVR3\n");
+    if (pingSuccess) espbuffsend(conn, "\x14\x10", 2);
+  } else if (conn->conn_mode == cmAVR3) {
+    if (pingSuccess) {
+      if (pingEnabled) os_printf("Ping disabled\n");
+      pingEnabled = 0;
+    }
   }
 
   // do the programming reset dance
@@ -214,12 +274,13 @@ serbridgeRecvCb(void *arg, char *data, unsigned short len)
     //os_delay_us(100L);
     //if (mcu_isp_pin >= 0) GPIO_OUTPUT_SET(mcu_isp_pin, 1);
     os_delay_us(1000L); // wait a millisecond before writing to the UART below
-    conn->conn_mode = cmPGM;
     slip_disabled++; // disable SLIP so it doesn't interfere with flashing
-#ifdef SKIP_AT_RESET
-    serledFlash(50); // short blink on serial LED
-    return;
-#endif
+    if (conn->conn_mode == cmAVR1) {
+      // we don't send anything to the AVR
+      serledFlash(50); // short blink on serial LED
+      return;
+    }
+    conn->conn_mode = cmARM;
   }
 
 
@@ -243,7 +304,7 @@ sendtxbuffer(serbridgeConnData *conn)
 {
   sint8 result = ESPCONN_OK;
   if (conn->txbufferlen != 0) {
-    //os_printf("TX %p %d\n", conn, conn->txbufferlen);
+    if (pingEnabled) os_printf("Xmit %p l=%d\n", conn, conn->txbufferlen);
     conn->readytosend = false;
     result = espconn_sent(conn->conn, (uint8_t*)conn->txbuffer, conn->txbufferlen);
     conn->txbufferlen = 0;
@@ -318,7 +379,7 @@ static void ICACHE_FLASH_ATTR
 serbridgeSentCb(void *arg)
 {
   serbridgeConnData *conn = ((struct espconn*)arg)->reverse;
-  os_printf("Sent CB %p\n", conn);
+  //os_printf("Sent CB %p\n", conn);
   if (conn == NULL) return;
   //os_printf("%d ST\n", system_get_time());
   if (conn->sentbuffer != NULL) os_free(conn->sentbuffer);
@@ -337,7 +398,17 @@ console_process(char *buf, short len)
   // push the buffer into each open connection
   for (short i=0; i<MAX_CONN; i++) {
     if (connData[i].conn) {
-      espbuffsend(&connData[i], buf, len);
+      if (pingEnabled && connData[i].conn_mode >= cmAVR1 && connData[i].conn_mode <= cmAVR3) {
+        // we're in AVR programming mode in local pinging mode
+        if (len == 2 && buf[0] == 0x14 && buf[1] == 0x10) {
+          // if this is the first INSYNC response, forward to avrdude
+          if (!pingSuccess && connData[i].conn_mode == cmAVR3) espbuffsend(&connData[i], buf, len);
+          pingAVR2();
+        }
+      } else {
+        // regular connection
+        espbuffsend(&connData[i], buf, len);
+      }
     }
   }
 }
@@ -371,7 +442,8 @@ serbridgeDisconCb(void *arg)
   conn->txbuffer = NULL;
   conn->txbufferlen = 0;
   // Send reset to attached uC if it was in programming mode
-  if (conn->conn_mode == cmPGM && mcu_reset_pin >= 0) {
+  if (conn->conn_mode >= cmAVR1 && conn->conn_mode <= cmARM && mcu_reset_pin >= 0) {
+    pingEnabled = 0;
     if (mcu_isp_pin >= 0) GPIO_OUTPUT_SET(mcu_isp_pin, 1);
     os_delay_us(100L);
     GPIO_OUTPUT_SET(mcu_reset_pin, 0);
@@ -415,8 +487,10 @@ serbridgeConnectCb(void *arg)
   connData[i].readytosend = true;
   connData[i].conn_mode = cmInit;
   // if it's the second port we start out in programming mode
-  if (conn->proto.tcp->local_port == serbridgeConn2.proto.tcp->local_port)
+  if (conn->proto.tcp->local_port == serbridgeConn2.proto.tcp->local_port) {
     connData[i].conn_mode = cmPGMInit;
+    serbridgeReset();
+  }
 
   espconn_regist_recvcb(conn, serbridgeRecvCb);
   espconn_regist_disconcb(conn, serbridgeDisconCb);

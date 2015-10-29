@@ -86,6 +86,14 @@ static void ICACHE_FLASH_ATTR wifiHandleEventCb(System_Event_t *evt) {
 #endif
     statusWifiUpdate(wifiState);
     break;
+  case EVENT_STAMODE_DHCP_TIMEOUT:
+    wifiState = wifiIsDisconnected;
+    wifiReason = 0;
+#ifdef CGIWIFI_DBG
+    os_printf("Wifi DHCP timeout");
+#endif
+    statusWifiUpdate(wifiState);
+    break;
   case EVENT_SOFTAPMODE_STACONNECTED:
 #ifdef CGIWIFI_DBG
     os_printf("Wifi AP: station " MACSTR " joined, AID = %d\n",

@@ -15,7 +15,10 @@ enum connModes {
   cmInit = 0,        // initialization mode: nothing received yet
   cmPGMInit,         // initialization mode for programming
   cmTransparent,     // transparent mode
-  cmPGM,             // Arduino/AVR/ARM programming mode
+  cmAVR1,            // Arduino/AVR programming mode: got 1st GET_SYNC
+  cmAVR2,            // Arduino/AVR programming mode: got 2nd GET_SYNC
+  cmAVR3,            // Arduino/AVR programming mode: normal transparent state
+  cmARM,             // ARM/other programming mode
   cmTelnet,          // use telnet escape sequences for programming mode
 };
 

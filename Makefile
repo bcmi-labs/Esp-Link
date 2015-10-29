@@ -122,7 +122,7 @@ else ifeq ("$(FLASH_SIZE)","2MB")
 # Here we're using two partitions of approx 0.5MB because that's what's easily available in terms
 # of linker scripts in the SDK. Ideally we'd use two partitions of approx 1MB, the remaining 2MB
 # cannot be used for code (esp8266 limitation).
-ESP_SPI_SIZE        ?= 4       # 6->4MB (1MB+1MB) or 4->4MB (512KB+512KB)
+ESP_SPI_SIZE        ?= 3       # 3->2MB (512KB+512KB)
 ESP_FLASH_MODE      ?= 0       # 0->QIO, 2->DIO
 ESP_FLASH_FREQ_DIV  ?= 15      # 15->80Mhz
 ESP_FLASH_MAX       ?= 503808  # max bin file for 512KB flash partition: 492KB
