@@ -154,6 +154,15 @@ serbridgeReset()
 #endif
 }
 
+// HACK vash
+void ICACHE_FLASH_ATTR
+ISPgpiowrite(bool state)
+{
+if (mcu_isp_pin >= 0) {
+    GPIO_OUTPUT_SET(mcu_isp_pin, state);
+}else { os_printf("MCU isp: no pin\n"); }
+}
+
 // Receive callback
 static void ICACHE_FLASH_ATTR
 serbridgeRecvCb(void *arg, char *data, unsigned short len)
@@ -500,3 +509,4 @@ serbridgeInit(int port1, int port2)
   espconn_tcp_set_max_con_allow(&serbridgeConn2, MAX_CONN);
   espconn_regist_time(&serbridgeConn2, SER_BRIDGE_TIMEOUT, 0);
 }
+

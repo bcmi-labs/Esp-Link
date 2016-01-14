@@ -35,6 +35,7 @@ void ICACHE_FLASH_ATTR serbridgeInit(int port1, int port2);
 void ICACHE_FLASH_ATTR serbridgeInitPins(void);
 void ICACHE_FLASH_ATTR serbridgeUartCb(char *buf, short len);
 void ICACHE_FLASH_ATTR serbridgeReset();
+void ICACHE_FLASH_ATTR ISPgpiowrite(bool);
 
 // callback when receiving UART chars when in programming mode
 extern void (*programmingCB)(char *buffer, short length);

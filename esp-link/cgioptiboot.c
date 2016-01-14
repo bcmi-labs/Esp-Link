@@ -129,6 +129,11 @@ int ICACHE_FLASH_ATTR cgiOptibootSync(HttpdConnData *connData) {
 
   } else if (connData->requestType == HTTPD_METHOD_POST) {
     // issue reset
+
+    // Vash ISP
+    DBG("Start procedure OTA328p\n");
+    ISPgpiowrite(false);
+	
     optibootInit();
     baudRate = flashConfig.baud_rate;
     programmingCB = optibootUartRecv;
@@ -171,7 +176,6 @@ int ICACHE_FLASH_ATTR cgiOptibootSync(HttpdConnData *connData) {
   } else {
     errorResponse(connData, 404, "Only GET and POST supported");
   }
-
   return HTTPD_CGI_DONE;
 }
 
@@ -317,13 +321,18 @@ int ICACHE_FLASH_ATTR cgiOptibootData(HttpdConnData *connData) {
     optibootInit();
     os_sprintf(errMessage, "Success. %d bytes at %ld baud in %d.%ds, %dB/s %d%% efficient",
         pgmDone, baudRate, (int)dt, (int)(dt*10)%10, (int)(pgmDone/dt),
-        (int)(100.0*(10.0*pgmDone/baudRate)/dt));
+        (int)(100.0*(10.0*pgmDone/baudRate)/dt)); 
   } else {
     code = 400;
     optibootInit();
     os_strcpy(errMessage, "Improperly terminated POST data");
   }
   DBG("OB pgm done: %d -- %s\n", code, errMessage);
+  
+  // Vash ISP
+  DBG("Finish procedure OTA328p\n");
+  ISPgpiowrite(true);
+
   noCacheHeaders(connData, code);
   httpdEndHeaders(connData);
   httpdSend(connData, errMessage, -1);
@@ -671,4 +680,3 @@ static void ICACHE_FLASH_ATTR optibootUartRecv(char *buf, short length) {
     break;
   }
 }
-

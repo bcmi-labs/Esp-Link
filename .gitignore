@@ -18,3 +18,4 @@ espfs/mkespfsimage/mman-win32/libmman.a
 tools/
 local.conf
 *.tgz
+*~

@@ -26,18 +26,18 @@
 
 # Base directory for the compiler. Needs a / at the end.
 # Typically you'll install https://github.com/pfalcon/esp-open-sdk
-XTENSA_TOOLS_ROOT ?= $(abspath ../esp-open-sdk/xtensa-lx106-elf/bin)/
+XTENSA_TOOLS_ROOT ?= /home/parallels/ESP/esp-open-sdk/xtensa-lx106-elf/bin/
 
 # Base directory of the ESP8266 SDK package, absolute
 # Typically you'll download from Espressif's BBS, http://bbs.espressif.com/viewforum.php?f=5
-SDK_BASE	?= $(abspath ../esp_iot_sdk_v1.5.0)
+SDK_BASE	?= ../../
 
 # Esptool.py path and port, only used for 1-time serial flashing
 # Typically you'll use https://github.com/themadinventor/esptool
 # Windows users use the com port i.e: ESPPORT ?= com3
-ESPTOOL		?= $(abspath ../esp-open-sdk/esptool/esptool.py)
-ESPPORT		?= /dev/ttyUSB0
-ESPBAUD		?= 460800
+ESPTOOL		?= /home/parallels/ESP/esp-open-sdk/esptool/esptool.py
+ESPPORT		?= /dev/ttyACM2
+ESPBAUD		?= 9600
 
 # The Wifi station configuration can be hard-coded here, which makes esp-link come up in STA+AP
 # mode trying to connect to the specified AP *only* if the flash wireless settings are empty!
@@ -46,7 +46,7 @@ ESPBAUD		?= 460800
 # STA_PASS ?= 
 
 # hostname or IP address for wifi flashing
-ESP_HOSTNAME        ?= esp-link
+ESP_HOSTNAME        ?= Arduino-link
 
 # --------------- chipset configuration   ---------------
 
@@ -58,11 +58,11 @@ FLASH_SIZE ?= 4MB
 # GPIO pin used to reset attached microcontroller, acative low
 MCU_RESET_PIN       ?= 12
 # GPIO pin used with reset to reprogram MCU (ISP=in-system-programming, unused with AVRs), active low
-MCU_ISP_PIN         ?= 13
+MCU_ISP_PIN         ?= 4
 # GPIO pin used for "connectivity" LED, active low
-LED_CONN_PIN        ?= 0
+LED_CONN_PIN        ?= 14
 # GPIO pin used for "serial activity" LED, active low
-LED_SERIAL_PIN      ?= 14
+LED_SERIAL_PIN      ?= 15
 
 # --------------- esp-link config options ---------------
 
