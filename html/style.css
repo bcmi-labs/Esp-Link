@@ -47,8 +47,10 @@ a:hover {
   /*color: #1c0099;*/
   padding: 0.3em;
   width: 100%;
-  color: #444; /* rgba not supported (IE 8) */
-  color: rgba(0, 0, 0, 0.80); /* rgba supported */
+  /*color: #444; *//* rgba not supported (IE 8) */
+  color: #FFFFFF;
+  /*color: rgba(0, 0, 0, 0.80); *//* rgba supported */
+  color: rgba(255, 255, 255, 255);
   border: 1px solid #999;  /*IE 6/7/8*/
   border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
   background-color: #E6E6E6;
@@ -165,7 +167,9 @@ fieldset fields {
 }
 #layout.active #menu {
   left: 150px;
-  width: 150px;
+  /*width: 150px; */
+  width: 220px;
+
 }
 
 #layout.active .menu-link {
@@ -210,11 +214,12 @@ div.tt {
 .header h1 .esp {
   font-size: 1.25em;
 }
-.jl {
+.jl , .header h1 {
   font: normal 800 1.5em sans-serif;
   position: relative;
   bottom: 19px;
-  color: #9d1414;
+  /*color: #9d1414;*/
+  color: #FFFFFF;
   margin-left: 3px;
 }
 
@@ -228,7 +233,8 @@ form button {
   margin-top: 0.5em;
 }
 .button-primary {
-  background-color: #99f;
+  /*background-color: #99f;*/
+  background: #00999A;
 }
 .button-selected {
   background-color: #fc6;
@@ -250,10 +256,12 @@ input.inline {
 
 /* Text console */
 pre.console {
-  background-color: #663300;
+  /*background-color: #663300;*/
+  background-color: #000;
   border-radius: 5px;
   border: 0px solid #000000;
-  color: #66ff66;
+  /*color: #66ff66;*/
+  color: #FC0;
   padding: 5px;
   overflow: scroll;
   margin: 0px;
@@ -339,15 +347,16 @@ pre.console a {
   left: 0;
   bottom: 0;
   z-index: 1000;
-  background: #191818;
+  background: #00999A;
   overflow: visible;
   -webkit-overflow-scrolling: touch;
 }
 
 #menu a {
-  color: #999;
+  /*color: #999;*/
+  color: #FFFFFF;
   border: none;
-  padding: 0.6em 0 0.6em 0.6em;
+  padding: 0.6em 0 0.7em 0.6em;
 }
 
 #menu .pure-menu, #menu .pure-menu ul {
@@ -356,15 +365,15 @@ pre.console a {
 }
 
 #menu .pure-menu ul, #menu .pure-menu .menu-item-divided {
-  border-top: 1px solid #333;
+  /*border-top: 1px solid #333;*/
 }
 
 #menu .pure-menu li a:hover, #menu .pure-menu li a:focus {
-  background: #333;
+  /*background: #333;*/
 }
 
 #menu .pure-menu-selected, #menu .pure-menu-heading {
-  background: #9d1414;
+  /*background: #9d1414;*/
 }
 
 #menu .pure-menu-selected a {
@@ -405,7 +414,7 @@ pre.console a {
 }
 
 .menu-link:hover, .menu-link:focus {
-  background: #000;
+  /*background: #000;*/
 }
 
 .menu-link span {
@@ -527,4 +536,8 @@ pre.console a {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
+}
+
+#version {
+    font-size: 0.7em;
 }

@@ -232,8 +232,8 @@ onLoad(function() {
   var mm = m(
    '<div id="menu">\
       <div class="pure-menu">\
-        <a class="pure-menu-heading" href="https://github.com/jeelabs/esp-link">\
-        <img src="/favicon.ico" height="32">&nbsp;esp-link</a>\
+        <a class="pure-menu-heading" href=".">\
+        <img src="/favicon.ico" height="128"></a>\
         <div class="pure-menu-heading system-name" style="padding: 0px 0.6em"></div>\
         <ul id="menu-list" class="pure-menu-list"></ul>\
       </div>\
