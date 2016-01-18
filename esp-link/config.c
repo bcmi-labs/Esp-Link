@@ -12,8 +12,8 @@ FlashConfig flashDefault = {
   .seq = 33, .magic = 0, .crc = 0,
   .reset_pin    = MCU_RESET_PIN, .isp_pin = MCU_ISP_PIN,
   .conn_led_pin = LED_CONN_PIN, .ser_led_pin = LED_SERIAL_PIN,
-  .baud_rate    = 115200,
-  .hostname     = "esp-link\0",
+  .baud_rate    = 9600,
+  .hostname     = "arduino\0",
   .staticip     = 0,
   .netmask      = 0x00ffffff,
   .gateway      = 0,
@@ -21,7 +21,7 @@ FlashConfig flashDefault = {
   .swap_uart    = 0,
   .tcp_enable   = 1, .rssi_enable = 0,
   .api_key      = "",
-  .slip_enable  = 0, .mqtt_enable = 0, .mqtt_status_enable = 0,
+  .slip_enable  = 1, .mqtt_enable = 0, .mqtt_status_enable = 0,
   .mqtt_timeout = 2, .mqtt_clean_session = 1,
   .mqtt_port    = 1883, .mqtt_keepalive = 60,
   .mqtt_host    = "\0", .mqtt_clientid = "\0",
@@ -132,7 +132,7 @@ bool ICACHE_FLASH_ATTR configRestore(void) {
     os_sprintf(chipIdStr, "%06x", system_get_chip_id());
 #ifdef CHIP_IN_HOSTNAME
     char hostname[16];
-    os_strcpy(hostname, "esp-link-");
+    os_strcpy(hostname, "arduino");
     os_strcat(hostname, chipIdStr);
     os_memcpy(&flashConfig.hostname, hostname, os_strlen(hostname));
 #endif
