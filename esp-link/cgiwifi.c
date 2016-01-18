@@ -614,6 +614,7 @@ int ICACHE_FLASH_ATTR cgiWifiInfo(HttpdConnData *connData) {
   return HTTPD_CGI_DONE;
 }
 
+
 // Init the wireless, which consists of setting a timer if we expect to connect to an AP
 // so we can revert to STA+AP mode if we can't connect.
 void ICACHE_FLASH_ATTR wifiInit() {
@@ -621,6 +622,61 @@ void ICACHE_FLASH_ATTR wifiInit() {
   int x = wifi_get_opmode() & 0x3;
   x = x;
   DBG("Wifi init, mode=%s\n", wifiMode[x]);
+
+// set ssid Vash
+  bool ret = FALSE;
+  char temp[64];
+  char macaddress[64];
+  uint8 bssid[6];
+  struct softap_config apConfig;
+
+  os_bzero(temp, 64);
+  os_bzero(&apConfig, sizeof(struct softap_config));
+
+  wifi_get_macaddr(SOFTAP_IF, bssid); //0x01
+  os_sprintf(macaddress, MACSTR , MAC2STR(bssid));
+
+  //wifi_softap_get_config(&apConfig); //read
+
+  apConfig.ssid[0] = 65;   //A
+  apConfig.ssid[1] = 114;  //r
+  apConfig.ssid[2] = 100;  //d
+  apConfig.ssid[3] = 117;  //u
+  apConfig.ssid[4] = 105;  //i
+  apConfig.ssid[5] = 110;  //n
+  apConfig.ssid[6] = 111;  //o
+  apConfig.ssid[7] = 45;   // -
+  apConfig.ssid[8] = 85;   //U
+  apConfig.ssid[9] = 110;  //n
+  apConfig.ssid[10] = 111; //o
+  apConfig.ssid[11] = 45;  //-
+  apConfig.ssid[12] = 87;  //W
+  apConfig.ssid[13] = 105;  //i
+  apConfig.ssid[14] = 70;  //F
+  apConfig.ssid[15] = 105;  //i
+  apConfig.ssid[16] = 45;  //-
+  apConfig.ssid[17] = macaddress[9]; 
+  apConfig.ssid[18] = macaddress[10]; 
+  apConfig.ssid[19] = macaddress[12]; 
+  apConfig.ssid[20] = macaddress[13];  
+  apConfig.ssid[21] = macaddress[15];
+  apConfig.ssid[22] = macaddress[16];
+
+
+  apConfig.password[0] = 0;
+  apConfig.channel = 6 ; 
+  apConfig.authmode = AUTH_OPEN ;
+  apConfig.ssid_hidden = 0;	// Note: default 0
+  apConfig.max_connection = 4;	// Note: default 4, max 4
+  apConfig.beacon_interval= 100;   // Note: support 100 ~ 60000 ms, default 100
+
+  ret = wifi_softap_set_config(&apConfig);
+  if (ret) {
+     DBG("WiFi: OK ssid default changed\n");
+  } else {
+     DBG("WiFi: ERROR ssid default changed\n");
+  }
+
   configWifiIP();
 
   // The default sleep mode should be modem_sleep, but we set it here explicitly for good
