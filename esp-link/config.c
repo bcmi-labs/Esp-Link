@@ -17,7 +17,7 @@ FlashConfig flashDefault = {
   .staticip     = 0,
   .netmask      = 0x00ffffff,
   .gateway      = 0,
-  .log_mode     = 0,
+  .log_mode     = 1, //Autolog only web
   .swap_uart    = 0,
   .tcp_enable   = 1, .rssi_enable = 0,
   .api_key      = "",

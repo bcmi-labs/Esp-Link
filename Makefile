@@ -36,7 +36,7 @@ SDK_BASE	?= ../../
 # Typically you'll use https://github.com/themadinventor/esptool
 # Windows users use the com port i.e: ESPPORT ?= com3
 ESPTOOL		?= /home/parallels/ESP/esp-open-sdk/esptool/esptool.py
-ESPPORT		?= /dev/ttyACM2
+ESPPORT		?= /dev/ttyACM0
 ESPBAUD		?= 9600
 
 # The Wifi station configuration can be hard-coded here, which makes esp-link come up in STA+AP
@@ -46,7 +46,7 @@ ESPBAUD		?= 9600
 # STA_PASS ?= 
 
 # hostname or IP address for wifi flashing
-ESP_HOSTNAME        ?= Arduino-link
+ESP_HOSTNAME        ?= arduino
 
 # --------------- chipset configuration   ---------------
 
@@ -69,7 +69,7 @@ LED_SERIAL_PIN      ?= 15
 # If CHANGE_TO_STA is set to "yes" the esp-link module will switch to station mode
 # once successfully connected to an access point. Else it will stay in AP+STA mode.
 
-CHANGE_TO_STA ?= yes
+CHANGE_TO_STA ?= no
 
 # Optional Modules
 MODULES ?= mqtt rest syslog
