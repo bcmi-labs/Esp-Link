@@ -116,9 +116,11 @@ void ICACHE_FLASH_ATTR wifiStartMDNS(struct ip_addr ip) {
   if (flashConfig.mdns_enable) {
     struct mdns_info *mdns_info = (struct mdns_info *)os_zalloc(sizeof(struct mdns_info));
     mdns_info->host_name = flashConfig.hostname;
-    mdns_info->server_name = flashConfig.mdns_servername;
+    mdns_info->server_name = "arduino";
     mdns_info->server_port = 80;
     mdns_info->ipAddr = ip.addr;
+    mdns_info->txt_data[0] = "board=unowifi";
+    mdns_info->txt_data[1] = "distro_version=0.1";
     espconn_mdns_init(mdns_info);    
   }
   else {    

@@ -208,7 +208,6 @@ int ICACHE_FLASH_ATTR cgiMenu(HttpdConnData *connData) {
         "\"Home\", \"/home.html\", "
         "\"WiFi\", \"/wifi/wifi.html\", "
         "\"&#xb5;C Console\", \"/console.html\", "
-        "\"Services\", \"/services.html\", "
 #ifdef MQTT
         "\"REST/MQTT\", \"/mqtt.html\", "
 #endif
