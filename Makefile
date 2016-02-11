@@ -26,11 +26,11 @@
 
 # Base directory for the compiler. Needs a / at the end.
 # Typically you'll install https://github.com/pfalcon/esp-open-sdk
-XTENSA_TOOLS_ROOT ?= /home/parallels/ESP/esp-open-sdk/xtensa-lx106-elf/bin/
+XTENSA_TOOLS_ROOT ?= $(abspath ../xtensa-lx106-elf/bin)/
 
 # Base directory of the ESP8266 SDK package, absolute
 # Typically you'll download from Espressif's BBS, http://bbs.espressif.com/viewforum.php?f=5
-SDK_BASE	?= ../../
+SDK_BASE	?= $(abspath ../esp_iot_sdk_v1.5.0)
 
 # Esptool.py path and port, only used for 1-time serial flashing
 # Typically you'll use https://github.com/themadinventor/esptool
