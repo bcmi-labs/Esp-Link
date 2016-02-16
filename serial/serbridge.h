@@ -11,6 +11,10 @@
 // Send buffer size
 #define MAX_TXBUFFER (2*1460)
 
+char buff_console[128];
+volatile short ready;
+volatile short UART_FORCE;
+
 enum connModes {
   cmInit = 0,        // initialization mode: nothing received yet
   cmPGMInit,         // initialization mode for programming

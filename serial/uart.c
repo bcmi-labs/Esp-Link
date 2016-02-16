@@ -20,6 +20,7 @@
 #include "esp8266.h"
 #include "task.h"
 #include "uart.h"
+#include "serbridge.h"
 
 #ifdef UART_DBG
 #define DBG_UART(format, ...) os_printf(format, ## __VA_ARGS__)
@@ -205,6 +206,24 @@ uart0_rx_intr_handler(void *para)
   {
     //DBG_UART("stat:%02X",*(uint8 *)UART_INT_ENA(uart_no));
     ETS_UART_INTR_DISABLE();
+
+uint16 length = 0;
+	if (UART_FORCE == 1){
+		while (READ_PERI_REG(UART_STATUS(UART0)) & (UART_RXFIFO_CNT << UART_RXFIFO_CNT_S)) {
+
+    			while ((READ_PERI_REG(UART_STATUS(UART0)) & (UART_RXFIFO_CNT << UART_RXFIFO_CNT_S)) &&
+          		 (length < 128)) {
+      					buff_console[length++] = READ_PERI_REG(UART_FIFO(UART0)) & 0xFF;
+				}
+		 	ready=1;
+			}
+		for (int i=0; i<MAX_CB; i++) {
+      			if (uart_recv_cb[i] != NULL) {(uart_recv_cb[i])(buff_console, length);}
+    		} 
+		WRITE_PERI_REG(UART_INT_CLR(UART0), UART_RXFIFO_FULL_INT_CLR|UART_RXFIFO_TOUT_INT_CLR);
+  		ETS_UART_INTR_ENABLE();
+	
+    	}
     post_usr_task(uart_recvTaskNum, 0);
   }
 }
@@ -229,7 +248,7 @@ uart_recvTask(os_event_t *events)
     //DBG_UART("%d ix %d\n", system_get_time(), length);
 
     for (int i=0; i<MAX_CB; i++) {
-      if (uart_recv_cb[i] != NULL) (uart_recv_cb[i])(buf, length);
+      if (uart_recv_cb[i] != NULL) {(uart_recv_cb[i])(buf, length);}
     }
   }
   WRITE_PERI_REG(UART_INT_CLR(UART0), UART_RXFIFO_FULL_INT_CLR|UART_RXFIFO_TOUT_INT_CLR);

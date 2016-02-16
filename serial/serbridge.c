@@ -11,6 +11,13 @@
 #include "slip.h"
 #include "cmd.h"
 #include "syslog.h"
+#include "cgiarduino.h"
+
+#ifdef REST_DBG
+#define DBG_REST(format, ...) os_printf(format, ## __VA_ARGS__)
+#else
+#define DBG_REST(format, ...) do { } while(0)
+#endif
 
 #define SKIP_AT_RESET
 
@@ -358,6 +365,7 @@ console_process(char *buf, short len)
 void ICACHE_FLASH_ATTR
 serbridgeUartCb(char *buf, short length)
 {
+
   if (programmingCB) {
     programmingCB(buf, length);
   } else if (!flashConfig.slip_enable || slip_disabled > 0) {
@@ -367,7 +375,7 @@ serbridgeUartCb(char *buf, short length)
     slip_parse_buf(buf, length);
   }
 
-  serledFlash(50); // short blink on serial LED
+  //serledFlash(50); // short blink on serial LED
 }
 
 //===== Connect / disconnect

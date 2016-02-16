@@ -349,10 +349,13 @@ static void ICACHE_FLASH_ATTR httpdProcessRequest(HttpdConnData *conn) {
         int match = 0;
         //See if there's a literal match
         if (os_strcmp(builtInUrls[i].url, conn->url) == 0) match = 1;
+        if (os_strncmp(builtInUrls[i].url, conn->url, 12) == 0) match = 1; //ho trovato /arduino/ fix it:FLAG ATTIVAZIONE SU PANEL
+
         //See if there's a wildcard match
         if (builtInUrls[i].url[os_strlen(builtInUrls[i].url) - 1] == '*' &&
           os_strncmp(builtInUrls[i].url, conn->url, os_strlen(builtInUrls[i].url) - 1) == 0) match = 1;
-        if (match) {
+        
+	if (match) {
           //os_printf("Is url index %d\n", i);
           conn->cgiData = NULL;
           conn->cgi = builtInUrls[i].cgiCb;

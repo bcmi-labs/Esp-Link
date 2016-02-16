@@ -3,7 +3,6 @@
 #include <esp8266.h>
 #include "uart.h"
 #include "cgi.h"
-#include "uart.h"
 #include "serbridge.h"
 #include "config.h"
 #include "console.h"
@@ -23,8 +22,7 @@ static char console_buf[BUF_MAX];
 static int console_wr, console_rd;
 static int console_pos; // offset since reset of buffer
 
-static void ICACHE_FLASH_ATTR
-console_write(char c) {
+static void ICACHE_FLASH_ATTR console_write(char c) {
   console_buf[console_wr] = c;
   console_wr = (console_wr+1) % BUF_MAX;
   if (console_wr == console_rd) {
@@ -141,6 +139,7 @@ ajaxConsole(HttpdConnData *connData) {
     rd = (rd + 1) % BUF_MAX;
   }
   os_strcpy(buff+len, "\"}"); len+=2;
+  //DBG_REST("ARDUINO CONSOLE buff: %s \n", buff); //Vash
   httpdSend(connData, buff, len);
   return HTTPD_CGI_DONE;
 }

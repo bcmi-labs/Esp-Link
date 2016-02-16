@@ -15,6 +15,7 @@
 #include "cgi.h"
 #include "cgiwifi.h"
 #include "cgipins.h"
+#include "cgiarduino.h"
 #include "cgitcp.h"
 #include "cgimqtt.h"
 #include "cgiflash.h"
@@ -31,6 +32,7 @@
 #include "gpio.h"
 #include "syslog.h"
 #include "cgiservices.h"
+#include "cgiarduino.h"
 
 #define NOTICE(format, ...) do {	                                          \
 	LOG_NOTICE(format, ## __VA_ARGS__ );                                      \
@@ -77,6 +79,9 @@ HttpdBuiltInUrl builtInUrls[] = {
   { "/services/info", cgiServicesInfo, NULL },
   { "/services/update", cgiServicesSet, NULL },
   { "/pins", cgiPins, NULL },
+  { "/arduino/analog/", cgiArduino, NULL },
+  { "/arduino/digital/", cgiArduino, NULL },
+  { "/arduino/mode/", cgiArduino, NULL },
 #ifdef MQTT
   { "/mqtt", cgiMqtt, NULL },
 #endif  
@@ -158,7 +163,7 @@ void user_init(void) {
   // mount the http handlers
   httpdInit(builtInUrls, 80);
   // init the wifi-serial transparent bridge (port 23)
-  serbridgeInit(23, 2323);
+  serbridgeInit(23, 2323);  //VASH PORTE !!!
   uart_add_recv_cb(&serbridgeUartCb);
 #ifdef SHOW_HEAP_USE
   os_timer_disarm(&prHeapTimer);

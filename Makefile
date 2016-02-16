@@ -35,7 +35,7 @@ SDK_BASE	?= $(abspath ../esp_iot_sdk_v1.5.0)
 # Esptool.py path and port, only used for 1-time serial flashing
 # Typically you'll use https://github.com/themadinventor/esptool
 # Windows users use the com port i.e: ESPPORT ?= com3
-ESPTOOL		?= /home/parallels/ESP/esp-open-sdk/esptool/esptool.py
+ESPTOOL		?= $(abspath ../esptool/esptool.py)
 ESPPORT		?= /dev/ttyACM0
 ESPBAUD		?= 9600
 
