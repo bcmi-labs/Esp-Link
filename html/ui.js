@@ -272,8 +272,6 @@ onLoad(function() {
 
       var v = $("#version");
       if (v != null) { v.innerHTML = data.version; }
-
-      setEditToClick("system-name", data["name"]);
     }, function() { setTimeout(getMenu, 1000); });
   };
   getMenu();
