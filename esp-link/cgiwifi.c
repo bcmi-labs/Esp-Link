@@ -121,6 +121,10 @@ void ICACHE_FLASH_ATTR wifiStartMDNS(struct ip_addr ip) {
     mdns_info->ipAddr = ip.addr;
     mdns_info->txt_data[0] = "board=unowifi";
     mdns_info->txt_data[1] = "distro_version=0.1";
+    mdns_info->txt_data[2] = "ssh_upload=no";
+    mdns_info->txt_data[3] = "tcp_check=yes";
+    mdns_info->txt_data[4] = "auth_upload=no";
+
     espconn_mdns_init(mdns_info);    
   }
   else {    
