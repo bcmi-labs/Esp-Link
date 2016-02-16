@@ -540,4 +540,14 @@ pre.console a {
 
 #version {
     font-size: 0.7em;
+    position: absolute; 
+    bottom: 0;
+    color: #fff;
+}
+
+#jeelabs-about {
+    font-size: 0.7em;
+    position: absolute; 
+    bottom: 0;
+    color: #fff;
 }
