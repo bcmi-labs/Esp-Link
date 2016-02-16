@@ -239,7 +239,7 @@ onLoad(function() {
       </div>\
     </div>\
     <h3 id="version"></h3>\
-    <h3 id="jeelabs-about"><a href="https://github.com/jeelabs/esp-link/">About</a></h3>
+    <h3 id="jeelabs-about"><a href="https://github.com/jeelabs/esp-link/">About</a></h3>\
     ');
   l.insertBefore(mm, o);
 
