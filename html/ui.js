@@ -229,17 +229,16 @@ onLoad(function() {
   // menu hamburger button
   l.insertBefore(m('<a href="#menu" id="menuLink" class="menu-link"><span></span></a>'), o);
   // menu left-pane
+    
   var mm = m(
    '<div id="menu">\
       <div class="pure-menu">\
         <a class="pure-menu-heading" href=".">\
         <img src="/favicon.ico" height="128"></a>\
-        <div class="pure-menu-heading system-name" style="padding: 0px 0.6em"></div>\
         <ul id="menu-list" class="pure-menu-list"></ul>\
       </div>\
+      <h3 id="version"></h3>\
     </div>\
-    <h3 id="version"></h3>\
-    <h3 id="jeelabs-about"><a href="https://github.com/jeelabs/esp-link/">About</a></h3>\
     ');
   l.insertBefore(mm, o);
 
