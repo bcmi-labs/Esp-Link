@@ -1,32 +1,57 @@
   <div id="main">
     <div class="header">
-      <div><span class="jl">UNO WiFi</span></div>
-      <!--h3 style="margin-top:0"><span class="esp">esp</span>-link</h3-->
-      <!--h3 id="version"></h3-->
+      <div>
+          <span class="jl">WELCOME</span>
+          <p> Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+                  <div class="click-to-edit system-name">
+                      <span class="edit-off"></span>
+                      <input class="edit-on" maxlength=31 hidden></input>
+                      <a id="chang-hostname-button" class="pure-button button-primary" href="#">CONTINUE</a>
+                  </div>  
+      </div>
     </div>
 
     <div class="content">
       <div class="pure-g">
         <!-- LEFT COLUMN -->
-        <div class="pure-u-1 pure-u-md-1-2">
+        <div class="pure-u-1 pure-u-md-1">
           <div class="card">
             <h1>System overview</h1>
             <div id="wifi-spinner" class="spinner spinner-small"></div>
             <table id="wifi-table" class="pure-table pure-table-horizontal" hidden><tbody>
-              <tr><td class="popup-target">Hostname</td><td>
+              <!--tr><td class="popup-target">Hostname</td><td>
                 <div class="click-to-edit system-name">
                   <span class="edit-off"></span>
                   <input class="edit-on" maxlength=31 hidden></input>
                   <div class="popup">Click to edit!<br>Hostname displayed in menu bar
                     and used by DHCP and mDNS</div>
                 </div>
-              </td></tr>
-              <tr><td>Network SSID</td><td id="wifi-ssid"></td></tr>
-              <tr><td>Wifi status</td><td id="wifi-status"></td></tr>
-              <tr><td>Wifi address</td><td id="wifi-ip"></td></tr>
-              <tr><td>SLIP status</td><td class="system-slip"></td></tr>
-              <tr><td>MQTT status</td><td class="system-mqtt"></td></tr>
-              <tr><td>Serial baud</td><td class="system-baud"></td></tr>
+              </td></tr-->
+              <!--tr><td>Network SSID</td><td id="wifi-ssid"></td></tr-->
+              <tr>
+                  <td class="td_key">Hostname</td><td id="wifi-hostname"></td>
+                  <td class="td_key sebba">Flash chip ID</td><td><div><span class="system-id"></span><div class="popup pop-left">Common IDs: 4016=4MB, 4014=1MB, 4013=512KB</div></div></td>
+              </tr>
+              <tr>
+                  <td class="td_key">Network SSID</td><td id="wifi-ssid"></td> 
+                  <td class="td_key sebba">Flash size</td><td><div><span class="system-size"></span><div class="popup pop-left">Size configured into bootloader, must match chip size</div></div></td>
+              </tr>
+              <tr>
+                  <td class="td_key">Wifi status</td><td id="wifi-status"></td>
+                  <td class="td_key sebba">Current partition</td><td class="system-partition"></td>
+              </tr>
+              <tr>
+                  <td class="td_key">Wifi address</td><td id="wifi-ip"></td>
+                  <td class="td_key sebba">SLIP status</td><td class="system-slip"></td>
+              </tr>
+              <tr>
+                  <td class="td_key">WiFi mode</td><td id="wifi-mode"></td>
+                  <td class="td_key sebba">MQTT status</td><td class="system-mqtt"></td>
+              </tr>
+              <tr>
+                  <td class="td_key">WiFi channel</td><td id="wifi-chan"></td>
+                  <td class="td_key sebba">Serial baud</td><td class="system-baud"></td>
+              </tr>
             </tbody></table>
           </div>
           <div class="card">
@@ -34,7 +59,10 @@
             <p style="margin-bottom:0;">The Arduino UNO WiFi firmware allows you to upload an Arduino sketch via OTA - Over The Air technology. You can use Arduino IDE for that. Please refer to the online <a href="http://labs.arduino.org/Getting+Started+with+Arduino+UNO+WiFi">Starter Guide</a> on Arduino.org</p>
           </div>
         </div>
-        <!-- RIGHT COLUMN -->
+          
+          
+          
+        <!-- RIGHT COLUMN>
         <div class="pure-u-1 pure-u-md-1-2">
           <div class="card" style="display:none" >
             <h1>Pin assignment</h1>
@@ -116,7 +144,7 @@
             </td></tr>
             </tbody></table>
           </div>
-        </div>
+        </div-->
       </div>
       <div class="pure-g">
       </div>

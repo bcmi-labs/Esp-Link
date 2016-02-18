@@ -204,7 +204,8 @@ div.tt {
   text-align: center;
   padding: 2.5em 2em 0;
   border-bottom: 1px solid #eee;
-  background-color: #fc0;
+  background-color: #f5f6f6;
+  height: 30vh;
 }
 .header h1 {
   margin: 0.2em 0;
@@ -218,8 +219,7 @@ div.tt {
   font: normal 800 1.5em sans-serif;
   position: relative;
   bottom: 19px;
-  /*color: #9d1414;*/
-  color: #FFFFFF;
+  color: #007481;
   margin-left: 3px;
 }
 
@@ -341,13 +341,13 @@ pre.console a {
 
 #menu {
   margin-left: -150px;
-  width: 150px;
+  width: 20vw;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   z-index: 1000;
-  background: #00999A;
+  background: #007481;
   overflow: visible;
   -webkit-overflow-scrolling: touch;
 }
@@ -391,10 +391,15 @@ pre.console a {
   vertical-align: middle;
   top: -1px;
   position: relative;
+  margin-left: 25%;
 }
 
-#menu .pure-menu-item {
-  height:2em;
+#menu .pure-menu-item, .sub-menu-header{
+  height: 6vh;
+  line-height: 4vh;
+  padding-left: 2.5vh;
+  text-transform: uppercase;
+  border-bottom: 1px solid #49acb2;
 }
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
@@ -542,7 +547,51 @@ pre.console a {
     font-size: 0.7em;
     position: absolute; 
     bottom: 0;
-    color: #fff;
+    color: #49acb2;
     font-weight: normal !important;
     text-align: center;
+    padding: 0 5%;
+}
+
+hr {
+    border-color: #49acb2;
+}
+
+p.sub-menu-header {
+    color: #49acb2 !important;
+    font-family: sans-serif;
+    font-size: x-small;
+    padding-left: 4%;
+    padding-top: 6%;
+    padding-bottom: 1%;
+}
+
+.pure-menu-link:hover {
+    background-color: #068891 !important;
+}
+
+td.td_key {
+    color : #797979 !important;
+}
+
+td.td_key.sebba {
+    padding-left: 5em;
+}
+
+.pure-table {
+    width: 100%;
+}
+
+.header p {
+    padding: 0 10%;
+}
+
+#chang-hostname-button {
+    width: 25vw;
+}
+
+#main {
+    width: 80vw;
+    right: 0;
+    position: fixed;
 }

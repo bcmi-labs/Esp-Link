@@ -205,11 +205,11 @@ int ICACHE_FLASH_ATTR cgiMenu(HttpdConnData *connData) {
   os_sprintf(buff, 
     "{ "
       "\"menu\": [ "
-        "\"Home\", \"/home.html\", "
+        "\"Overview\", \"/home.html\", "
         "\"WiFi\", \"/wifi/wifi.html\", "
         "\"Serial Monitor\", \"/console.html\", "
 #ifdef MQTT
-        "\"REST/MQTT\", \"/mqtt.html\", "
+        "\"IOT\", \"/mqtt.html\", "
 #endif
         "\"Debug log\", \"/log.html\""
       " ], "
