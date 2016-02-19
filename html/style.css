@@ -615,6 +615,8 @@ td.td_key.sebba {
 
 span.jl {
     padding: 0 10%;
+    float: left;
+    width: 100%;
 }
 
 legend {
@@ -623,4 +625,29 @@ legend {
 
 a#reset-button {
     width: 25vh;
+}
+
+.card h1 {
+    text-transform: uppercase;
+    font-size: 1.5em !important;
+}
+
+.mqtt-button{
+    text-transform: uppercase;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.card.mqtt-card {
+    padding: 10px 20px;
+}
+
+#slip-enable-checkbox{
+    float: left;
+    margin-left: 40%;
+}
+
+#slip-enable-label{
+    float: left;
+    text-transform: uppercase;
 }
