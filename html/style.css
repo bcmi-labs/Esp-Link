@@ -286,8 +286,8 @@ pre.console a {
   box-sizing: border-box;
 }
 .console-in option:checked {
-  background-image: -webkit-linear-gradient(#068891, #068891);
-  background-image: linear-gradient(#068891, #068891);
+  background-image: -webkit-linear-gradient(#e6e7e8, #e6e7e8);
+  background-image: linear-gradient(#e6e7e8, #e6e7e8);
 }
 
 /* console flex */
