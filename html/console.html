@@ -1,33 +1,17 @@
   <div id="main" class="flex-fill flex-vbox" style="max-height:100%">
     <div class="header">
-      <h1>Microcontroller Console</h1>
+      <span class="jl">SERIAL MONITOR</span>
+      <p>Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
     </div>
 
     <div class="content flex-fill flex-vbox">
       <p>
-        <a id="reset-button" class="pure-button button-primary" href="#">Reset &#xb5;C</a>
-        &nbsp; <a id="clear-button" class="pure-button button-primary" href="#">Clear Log</a>
-        &nbsp; Baud:
-        <select id="baud-sel" class="pure-button" href="#" disabled>
-          <option value="460800">460800</option>
-          <option value="250000">250000</option>
-          <option value="230400">230400</option>
-          <option value="115200">115200</option>
-          <option value="57600">57600</option>
-          <option value="38400">38400</option>
-          <option value="19200">19200</option>
-          <option value="9600">9600</option>
-        </select>
-        &nbsp; Fmt: 8N1
+        <a id="reset-button" class="pure-button button-primary">Reset &#xb5;C</a>
       </p>
-      <div class="pure-g">
-        <div class="pure-u-1-4"><legend><b>Console</b></legend></div>
-        <div class="pure-u-3-4"></div>
-      </div>
       <pre class="console flex-fill" id="console">--- No Content ---</pre>
-      <div>
+      <div> 
+        <br>
         <div class="pure-g">
-          <div class="pure-u-1-4"><legend><b>Console entry</b></legend></div>
           <div class="pure-u-2-4">
             <legend>(ENTER to submit, ESC to clear)</legend>
           </div>
@@ -41,11 +25,12 @@
         <div class="pure-g">
           <div class="pure-u-1-1">
             <span style="float:right; width:10px;"></span>
-            <input type="text" class="console-in" id="input-text" value="">
+              <input type="text" class="console-in" id="input-text" value=""></input>
           </div>
         </div>
+        <br>
         <div class="pure-g">
-          <div class="pure-u-1-4"><legend><b>History buffer</b></legend></div>
+          <!--div class="pure-u-1-4"><legend><b>History buffer</b></legend></div-->
           <div class="pure-u-2-4"><legend>(UP/DOWN arrows to select)</legend></div>
           <div class="pure-u-1-4"></div>
         </div>
@@ -73,13 +58,8 @@
       );
     });
 
-    $("#clear-button").addEventListener("click", function(e) {
-        e.preventDefault();
-        var co = $("#console");
-        co.innerHTML = "";
-    });
 
-    ajaxJson('GET', "/console/baud",
+    /*ajaxJson('GET', "/console/baud",
       function(data) { $("#baud-sel").value = data.rate; },
       function(s, st) { showNotification(st); }
     );
@@ -91,7 +71,7 @@
         function(resp) { showNotification("" + baud + " baud set"); },
         function(s, st) { showWarning("Error setting baud rate: " + st); }
       );
-    });
+    });*/
 
     consoleSendInit();
 
