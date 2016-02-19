@@ -304,6 +304,7 @@ function showWifiInfo(data) {
   $("#wifi-spinner").setAttribute("hidden", "");
   $("#wifi-table").removeAttribute("hidden");
   currAp = data.ssid;
+  $("#change-hostname-input").value = data.hostname;
 }
 
 function getWifiInfo() {

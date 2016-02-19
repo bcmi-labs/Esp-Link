@@ -2,12 +2,13 @@
     <div class="header">
       <div>
           <span class="jl">WELCOME</span>
-          <p> Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
+          <p>The Arduino UNO WiFi firmware allows you to upload an Arduino sketch via OTA - Over The Air technology. You can use Arduino IDE for that. Please refer to the online <a href="http://labs.arduino.org/Getting+Started+with+Arduino+UNO+WiFi">Starter Guide</a> on Arduino.org</p>
                   <div class="click-to-edit system-name">
-                      <span class="edit-off"></span>
-                      <input class="edit-on" maxlength=31 hidden></input>
-                      <a id="chang-hostname-button" class="pure-button button-primary" href="#">CONTINUE</a>
-                  </div>  
+                      <!--span class="edit-off"></span>
+                      <input class="edit-on" maxlength=31 hidden></input-->
+                      <input class="edit-on" maxlength=31 id"change-hostname-input"></input>
+                  </div>
+                  <a id="chang-hostname-button" class="pure-button button-primary">CONTINUE</a>
       </div>
     </div>
 
@@ -16,7 +17,6 @@
         <!-- LEFT COLUMN -->
         <div class="pure-u-1 pure-u-md-1">
           <div class="card">
-            <h1>System overview</h1>
             <div id="wifi-spinner" class="spinner spinner-small"></div>
             <table id="wifi-table" class="pure-table pure-table-horizontal" hidden><tbody>
               <!--tr><td class="popup-target">Hostname</td><td>
@@ -27,7 +27,9 @@
                     and used by DHCP and mDNS</div>
                 </div>
               </td></tr-->
-              <!--tr><td>Network SSID</td><td id="wifi-ssid"></td></tr-->
+              <tr>
+                  <td class="td_header" colspan="4"><h1 class="jl">Summary</h1></td>
+              </tr>
               <tr>
                   <td class="td_key">Hostname</td><td id="wifi-hostname"></td>
                   <td class="td_key sebba">Flash chip ID</td><td><div><span class="system-id"></span><div class="popup pop-left">Common IDs: 4016=4MB, 4014=1MB, 4013=512KB</div></div></td>
@@ -54,10 +56,10 @@
               </tr>
             </tbody></table>
           </div>
-          <div class="card">
+          <!--div class="card">
             <h1>Info</h1>
             <p style="margin-bottom:0;">The Arduino UNO WiFi firmware allows you to upload an Arduino sketch via OTA - Over The Air technology. You can use Arduino IDE for that. Please refer to the online <a href="http://labs.arduino.org/Getting+Started+with+Arduino+UNO+WiFi">Starter Guide</a> on Arduino.org</p>
-          </div>
+          </div-->
         </div>
           
           
