@@ -24,7 +24,7 @@ a:hover {
 
 .card {
   background-color: #f5f6f6;
-  padding: 1em;
+  /*padding: 1em;*/
   margin: 0.5em;
   border-radius: 0.5em;
   border: 0px solid #000000;
@@ -609,7 +609,7 @@ td.td_key.sebba {
 }
 
 .td_header {
-    background-color: #e6e7e8;
+    background-color: #e6e7e8 !important;
 }
 
 span.jl {
