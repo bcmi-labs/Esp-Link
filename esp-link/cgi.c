@@ -206,8 +206,8 @@ int ICACHE_FLASH_ATTR cgiMenu(HttpdConnData *connData) {
     "{ "
       "\"menu\": [ "
         "\"Overview\", \"/home.html\", "
-        "\"WiFi\", \"/wifi/wifi.html\", "
         "\"Serial Monitor\", \"/console.html\", "
+        "\"WiFi\", \"/wifi/wifi.html\", "
 #ifdef MQTT
         "\"IOT\", \"/mqtt.html\", "
 #endif

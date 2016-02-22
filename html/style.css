@@ -201,12 +201,13 @@ div.tt {
 
 .header {
   margin: 0;
+  margin-bottom: 5%;
   color: #333;
   text-align: center;
   padding: 2.5em 2em 0;
   border-bottom: 1px solid #eee;
   background-color: #f5f6f6;
-  height: 21vh;
+  height: 15vh;
 }
 .header h1 {
   margin: 0.2em 0;
@@ -399,7 +400,6 @@ pre.console a {
 }
 
 #menu .pure-menu-item, .sub-menu-header{
-  height: 6vh;
   line-height: 4vh;
   padding-left: 2.5vh;
   text-transform: uppercase;
@@ -568,6 +568,7 @@ p.sub-menu-header {
     padding-left: 4%;
     padding-top: 6%;
     padding-bottom: 1%;
+    text-transform: uppercase;
 }
 
 .pure-menu-link:hover {
@@ -591,8 +592,8 @@ td.td_key.sebba {
     text-align: left;
 }
 
-#chang-hostname-button {
-    width: 20vw;
+#change-hostname-button, #change-network-button {
+    width: 10vw;
     height: 3.5vh;
     margin-left: 20px;
     float: left;
@@ -650,4 +651,8 @@ a#reset-button {
 #slip-enable-label{
     float: left;
     text-transform: uppercase;
+}
+
+#menu-list {
+    padding-top: 10%;
 }

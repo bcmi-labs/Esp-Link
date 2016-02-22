@@ -3,12 +3,6 @@
       <div>
           <span class="jl">WELCOME</span>
           <p>The Arduino UNO WiFi firmware allows you to upload an Arduino sketch via OTA - Over The Air technology. You can use Arduino IDE for that. Please refer to the online <a href="http://labs.arduino.org/Getting+Started+with+Arduino+UNO+WiFi">Starter Guide</a> on Arduino.org</p>
-                  <div class="click-to-edit system-name">
-                      <!--span class="edit-off"></span>
-                      <input class="edit-on" maxlength=31 hidden></input-->
-                      <input class="edit-on" maxlength=31 id"change-hostname-input"></input>
-                  </div>
-                  <a id="chang-hostname-button" class="pure-button button-primary">CONTINUE</a>
       </div>
     </div>
 
@@ -28,31 +22,44 @@
                 </div>
               </td></tr-->
               <tr>
-                  <td class="td_header" colspan="4"><h1 class="jl">Summary</h1></td>
+                  <td class="td_header" colspan="3"><h1 class="jl">Summary</h1></td>
               </tr>
               <tr>
-                  <td class="td_key">Hostname</td><td id="wifi-hostname"></td>
-                  <td class="td_key sebba">Flash chip ID</td><td><div><span class="system-id"></span><div class="popup pop-left">Common IDs: 4016=4MB, 4014=1MB, 4013=512KB</div></div></td>
+                  <td class="td_key">Hostname</td><td id="wifi-hostname"></td><td><a id="change-hostname-button" class="pure-button button-primary" href="./wifi/wifi.html">CHANGE</a></td>
               </tr>
               <tr>
-                  <td class="td_key">Network SSID</td><td id="wifi-ssid"></td> 
-                  <td class="td_key sebba">Flash size</td><td><div><span class="system-size"></span><div class="popup pop-left">Size configured into bootloader, must match chip size</div></div></td>
+                  <td class="td_key">Network SSID</td><td id="wifi-ssid"></td><td><a id="change-network-button" class="pure-button button-primary" href="./wifi/wifi.html">CHANGE</a></td> 
               </tr>
               <tr>
-                  <td class="td_key">Wifi status</td><td id="wifi-status"></td>
-                  <td class="td_key sebba">Current partition</td><td class="system-partition"></td>
+                  <td class="td_key">Wifi status</td><td id="wifi-status"></td><td></td>
               </tr>
               <tr>
-                  <td class="td_key">Wifi address</td><td id="wifi-ip"></td>
-                  <td class="td_key sebba">SLIP status</td><td class="system-slip"></td>
+                  <td class="td_key">Wifi address</td><td id="wifi-ip"></td><td></td>
               </tr>
               <tr>
-                  <td class="td_key">WiFi mode</td><td id="wifi-mode"></td>
-                  <td class="td_key sebba">MQTT status</td><td class="system-mqtt"></td>
+                  <td class="td_key">WiFi mode</td><td id="wifi-mode"></td><td></td>
               </tr>
               <tr>
-                  <td class="td_key">WiFi channel</td><td id="wifi-chan"></td>
-                  <td class="td_key sebba">Serial baud</td><td class="system-baud"></td>
+                  <td class="td_key">WiFi channel</td><td id="wifi-chan"></td><td></td>
+              </tr>
+                
+              <tr>
+                  <td class="td_key">Flash chip ID</td><td><div><span class="system-id"></span><div class="popup pop-left">Common IDs: 4016=4MB, 4014=1MB, 4013=512KB</div></div></td><td></td>
+              </tr>
+              <tr>
+                  <td class="td_key">Flash size</td><td><div><span class="system-size"></span><div class="popup pop-left">Size configured into bootloader, must match chip size</div></div></td><td></td>
+              </tr>
+              <tr>
+                  <td class="td_key">Current partition</td><td class="system-partition"></td><td></td>
+              </tr>
+              <tr>
+                  <td class="td_key">SLIP status</td><td class="system-slip"></td><td></td>
+              </tr>
+              <tr>
+                  <td class="td_key">MQTT status</td><td class="system-mqtt"></td><td></td>
+              </tr>
+              <tr>
+                  <td class="td_key">Serial baud</td><td class="system-baud"></td><td></td>
               </tr>
             </tbody></table>
           </div>

@@ -235,10 +235,9 @@ onLoad(function() {
       <div class="pure-menu">\
         <a class="pure-menu-heading" href=".">\
         <img src="/favicon.ico" height="128"></a>\
-        <p class="sub-menu-header">SETTINGS</p>\
         <ul id="menu-list" class="pure-menu-list"></ul>\
-        <p class="sub-menu-header">ADAVANCED</p>\
-        <ul id="menu-list-advanced" class="pure-menu-list"></ul>\
+        <p class="sub-menu-header">settings</p>\
+        <ul id="menu-list-settings" class="pure-menu-list"></ul>\
       </div>\
       <h3 id="version"></h3>\
     </div>\
@@ -264,23 +263,23 @@ onLoad(function() {
   // populate menu via ajax call
   var getMenu = function() {
     ajaxJson("GET", "/menu", function(data) {
-      var html = "", htmladvanced = "", path = window.location.pathname;
+      var html = "", htmlsettings = "", path = window.location.pathname;
       for (var i=0; i<data.menu.length; i+=2) {
         var href = data.menu[i+1];
-        if(i < 6)
+        if(i < 4)
             html = html.concat(" <li class=\"pure-menu-item" +
                 (path === href ? " pure-menu-selected" : "") + "\">" +
                 "<a href=\"" + href + "\" class=\"pure-menu-link\">" +
                 data.menu[i] + "</a></li>");
         else
-            htmladvanced = htmladvanced.concat(" <li class=\"pure-menu-item" +
+            htmlsettings = htmlsettings.concat(" <li class=\"pure-menu-item" +
                 (path === href ? " pure-menu-selected" : "") + "\">" +
                 "<a href=\"" + href + "\" class=\"pure-menu-link\">" +
                 data.menu[i] + "</a></li>");
           
       }
       $("#menu-list").innerHTML = html;
-      $("#menu-list-advanced").innerHTML = htmladvanced;
+      $("#menu-list-settings").innerHTML = htmlsettings;
 
       var v = $("#version");
       if (v != null) { v.innerHTML = data.version; }
@@ -304,7 +303,6 @@ function showWifiInfo(data) {
   $("#wifi-spinner").setAttribute("hidden", "");
   $("#wifi-table").removeAttribute("hidden");
   currAp = data.ssid;
-  $("#change-hostname-input").value = data.hostname;
 }
 
 function getWifiInfo() {
