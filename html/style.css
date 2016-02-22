@@ -656,3 +656,8 @@ a#reset-button {
 #menu-list {
     padding-top: 10%;
 }
+
+.console-options {
+    float: right;
+    text-align: -webkit-right;
+}

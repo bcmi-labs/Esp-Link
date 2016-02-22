@@ -1,25 +1,16 @@
   <div id="main" class="flex-fill flex-vbox" style="max-height:100%">
     <div class="header">
       <span class="jl">SERIAL MONITOR</span>
-      <p>Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
     </div>
 
     <div class="content flex-fill flex-vbox">
-      <p>
-        <a id="reset-button" class="pure-button button-primary">Reset &#xb5;C</a>
-      </p>
       <pre class="console flex-fill" id="console">--- No Content ---</pre>
       <div> 
         <br>
         <div class="pure-g">
+            <div class="pure-u-1-4"><legend><b>Text entry</b></legend></div>
           <div class="pure-u-2-4">
             <legend>(ENTER to submit, ESC to clear)</legend>
-          </div>
-          <div class="pure-u-1-4">
-            <legend>Add:
-              <input type="checkbox" id="input-add-cr" checked class="inline"><label>CR(\r)</label>
-              <input type="checkbox" id="input-add-lf" checked class="inline"><label>LF(\n)</label>
-            </legend>
           </div>
         </div>
         <div class="pure-g">
@@ -30,12 +21,21 @@
         </div>
         <br>
         <div class="pure-g">
-          <!--div class="pure-u-1-4"><legend><b>History buffer</b></legend></div-->
+          <div class="pure-u-1-4"><legend><b>History</b></legend></div>
           <div class="pure-u-2-4"><legend>(UP/DOWN arrows to select)</legend></div>
           <div class="pure-u-1-4"></div>
         </div>
         <div class="pure-g">
           <div class="pure-u-1-1"><select class="console-in" id="send-history" size="5"></select></div>
+        </div>
+        <br>
+        <a id="reset-button" class="pure-button button-primary">Reset &#xb5;C</a>
+        <div class="pure-u-1-2 console-options">
+            <legend>
+              <input type="checkbox" id="input-scroll" checked class="inline"><label>Autoscroll</label>
+              <input type="checkbox" id="input-add-cr" checked class="inline"><label>CR(\r)</label>
+              <input type="checkbox" id="input-add-lf" checked class="inline"><label>LF(\n)</label>
+            </legend>
         </div>
       </div>
     </div>
