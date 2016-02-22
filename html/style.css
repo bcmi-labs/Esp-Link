@@ -28,6 +28,7 @@ a:hover {
   margin: 0.5em;
   border-radius: 0.5em;
   border: 0px solid #000000;
+  margin-bottom: 15%;
 }
 
 /* click-to-edit fields */
@@ -593,9 +594,9 @@ td.td_key.sebba {
 }
 
 #change-hostname-button, #change-network-button {
-    width: 10vw;
+    /*width: 10vw;*/
+    width: 100% !important;
     height: 3.5vh;
-    margin-left: 20px;
     float: left;
 }
 
@@ -607,7 +608,9 @@ td.td_key.sebba {
 
 .system-name {
     float: left;
-    margin-left: 30%;
+    margin-bottom: 10%;
+    width: 100%;
+    text-align: center;
 }
 
 .td_header {
@@ -660,4 +663,16 @@ a#reset-button {
 .console-options {
     float: right;
     text-align: -webkit-right;
+}
+
+button.pure-button.button-primary {
+    width: 100%;
+}
+
+#change-hostname-input {
+    width: 98%;
+}
+
+#hostname-card {
+height: 20vh;
 }
