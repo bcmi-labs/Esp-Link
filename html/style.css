@@ -16,10 +16,10 @@ body {
     color: #777;
 }
 a:visited, a:link {
-  color: #009;
+  /*color: #009;*/
 }
 a:hover {
-  color: #00c;
+  /*color: #00c;*/
 }
 
 .card {
@@ -28,7 +28,7 @@ a:hover {
   margin: 0.5em;
   border-radius: 0.5em;
   border: 0px solid #000000;
-  margin-bottom: 15%;
+  /*margin-bottom: 15%;*/
 }
 
 /* click-to-edit fields */
@@ -603,12 +603,12 @@ td.td_key.sebba {
 #main {
     width: 80vw;
     right: 0;
-    position: fixed;
+    position: absolute;
 }
 
 .system-name {
     float: left;
-    margin-bottom: 10%;
+    /*margin-bottom: 10%;*/
     width: 100%;
     text-align: center;
 }
@@ -673,6 +673,11 @@ button.pure-button.button-primary {
     width: 98%;
 }
 
-#hostname-card {
-height: 20vh;
+#hostname-card td {
+    border: 0;
+}
+
+a.pure-button.button-primary {
+    text-transform: uppercase;
+    width: 100%;
 }
