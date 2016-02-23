@@ -335,6 +335,14 @@ pre.console a {
 /* log page */
 .dbg-btn, #refresh-button {
   vertical-align: baseline;
+  width: 48%;
+  float: left;
+}
+
+.dbg-btn, #reset-button {
+  vertical-align: baseline;
+  width: 48%;
+  float: right;
 }
 
 .lock-icon {
@@ -625,10 +633,6 @@ span.jl {
 
 legend {
     color: #797979;
-}
-
-a#reset-button {
-    width: 25vh;
 }
 
 .card h1 {
