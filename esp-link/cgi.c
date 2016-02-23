@@ -209,7 +209,7 @@ int ICACHE_FLASH_ATTR cgiMenu(HttpdConnData *connData) {
         "\"Serial Monitor\", \"/console.html\", "
         "\"WiFi\", \"/wifi/wifi.html\", "
 #ifdef MQTT
-        "\"IOT\", \"/mqtt.html\", "
+        "\"Connectivity\", \"/mqtt.html\", "
 #endif
         "\"Debug log\", \"/log.html\""
       " ], "
