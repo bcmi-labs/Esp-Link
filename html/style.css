@@ -223,7 +223,7 @@ div.tt {
   position: relative;
   bottom: 19px;
   color: #007481;
-  margin-left: 10%;
+  margin-left: 11%;
   text-transform: uppercase;
   text-align: left;
   font-size: 18.2pt;
@@ -582,12 +582,13 @@ hr {
 
 p.sub-menu-header {
     color: #49acb2 !important;
-    font-family: TyponineSansMonoText
-    font-size: 12pt;
+    font-family: TyponineSansMonoText;
+    font-size: 9pt;
     padding-left: 4%;
     padding-top: 6%;
     text-transform: uppercase;
     height: 30px;
+    margin-bottom: 0;
 }
 
 .pure-menu-link:hover, li.pure-menu-item.pure-menu-selected, li.pure-menu-item:hover {
@@ -733,6 +734,17 @@ a.pure-menu-link {
     width: 735px;
 }
 
+#mqtt-form {
+    margin-top: 16px;
+}
+
+#enable-status-report {
+    margin-top: 16px;
+}
+
+.console-box {
+    margin-left: 113px !important;
+}
 
 /*@font-face {
     font-family: TyponineSansLight;
