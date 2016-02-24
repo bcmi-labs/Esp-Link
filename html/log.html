@@ -8,7 +8,7 @@
       <div class="pure-g debug">
         <p class="pure-u-1-1" style="vertical-align: baseline;">
           <a id="refresh-button" class="pure-button button-primary" href="#">Refresh</a>
-          <a id="reset-button" class="dbg-btn pure-button button-primary" href="#">Wifi reboot</a>
+          <a id="log-reset-button" class="dbg-btn pure-button button-primary" href="#">Wifi reboot</a>
         </p>
       </div>
     </div>
@@ -26,7 +26,7 @@
       fetchText(100, false);
     });
 
-    $("#reset-button").addEventListener("click", function (e) {
+    $("#log-reset-button").addEventListener("click", function (e) {
         e.preventDefault();
         var co = $("#console");
         co.innerHTML = "";

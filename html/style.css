@@ -343,8 +343,16 @@ pre.console a {
 .dbg-btn, #reset-button {
   vertical-align: baseline;
   width: 48%;
+  float: left;
+}
+
+.dbg-btn, #log-reset-button {
+  vertical-align: baseline;
+  width: 48%;
   float: right;
 }
+
+
 
 .lock-icon {
   background-image: url("/wifi/icons.png");
@@ -715,6 +723,14 @@ a.pure-button.button-primary {
 a.pure-menu-link {
     font-family: TyponineSansMonoMedium;
     font-size: 13pt;
+}
+
+#send-history {
+    width: 735px;
+}
+
+#input-text {
+    width: 735px;
 }
 
 
