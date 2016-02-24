@@ -18,6 +18,7 @@ function fetchText(delay, repeat) {
 
 function updateText(resp) {
   var el = $("#console");
+  var scroll = $("#input-scroll").checked;   
 
   var delay = 3000;
   if (resp != null && resp.len > 0) {
@@ -36,7 +37,7 @@ function updateText(resp) {
     delay = 500;
 
     // scroll to bottom
-    if(isScrolledToBottom) el.scrollTop = el.scrollHeight - el.clientHeight;
+    if(isScrolledToBottom && scroll) el.scrollTop = el.scrollHeight - el.clientHeight;
   }
   return delay;
 }

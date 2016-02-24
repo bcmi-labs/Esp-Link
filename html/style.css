@@ -16,18 +16,19 @@ body {
     color: #777;
 }
 a:visited, a:link {
-  color: #009;
+  /*color: #009;*/
 }
 a:hover {
-  color: #00c;
+  /*color: #00c;*/
 }
 
 .card {
-  background-color: #eee;
-  padding: 1em;
+  background-color: #f5f6f6;
+  /*padding: 1em;*/
   margin: 0.5em;
   border-radius: 0.5em;
   border: 0px solid #000000;
+  /*margin-bottom: 15%;*/
 }
 
 /* click-to-edit fields */
@@ -39,8 +40,9 @@ a:hover {
 }
 .click-to-edit input, .click-to-edit textarea {
   color: black;
-  background-color: #eee;
+  background-color: #fff;
   width: 100%;
+  height: 3vh;
 }
 .click-to-edit span, .click-to-edit div {
   /*background-color: #e0e0e0;*/
@@ -135,7 +137,7 @@ fieldset fields {
 }
 
 .pure-table td, .pure-table th {
-  padding: 0.5em 0.5em;
+  /*padding: 0.5em 0.5em;*/
 }
 
 /* Narrow left-aligned Forms */
@@ -200,11 +202,13 @@ div.tt {
 
 .header {
   margin: 0;
+  margin-bottom: 5%;
   color: #333;
   text-align: center;
   padding: 2.5em 2em 0;
   border-bottom: 1px solid #eee;
-  background-color: #fc0;
+  background-color: #f5f6f6;
+  height: 15vh;
 }
 .header h1 {
   margin: 0.2em 0;
@@ -215,12 +219,14 @@ div.tt {
   font-size: 1.25em;
 }
 .jl , .header h1 {
-  font: normal 800 1.5em sans-serif;
+  font: normal 800 1.5em TyponineSansMonoMedium;
   position: relative;
   bottom: 19px;
-  /*color: #9d1414;*/
-  color: #FFFFFF;
-  margin-left: 3px;
+  color: #007481;
+  margin-left: 10%;
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 18.2pt;
 }
 
 .content-subhead {
@@ -234,7 +240,7 @@ form button {
 }
 .button-primary {
   /*background-color: #99f;*/
-  background: #00999A;
+  background: #007481;
 }
 .button-selected {
   background-color: #fc6;
@@ -265,6 +271,7 @@ pre.console {
   padding: 5px;
   overflow: scroll;
   margin: 0px;
+  height: 35vh;
 }
 
 pre.console a {
@@ -272,18 +279,18 @@ pre.console a {
 }
 
 .console-in {
-  background-color: #fff0b3;
+  background-color: #fff;
   border-radius: 5px;
-  border: 0px solid #630;
-  color: #0c0;
+  border: 1px solid #d3d2d2;
+  color: #000;
   padding: 5px;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 }
 .console-in option:checked {
-  background-image: -webkit-linear-gradient(#fc0, #fc0);
-  background-image: linear-gradient(#fc0, #fc0);
+  background-image: -webkit-linear-gradient(#e6e7e8, #e6e7e8);
+  background-image: linear-gradient(#e6e7e8, #e6e7e8);
 }
 
 /* console flex */
@@ -329,6 +336,14 @@ pre.console a {
 /* log page */
 .dbg-btn, #refresh-button {
   vertical-align: baseline;
+  width: 48%;
+  float: left;
+}
+
+.dbg-btn, #reset-button {
+  vertical-align: baseline;
+  width: 48%;
+  float: right;
 }
 
 .lock-icon {
@@ -341,13 +356,13 @@ pre.console a {
 
 #menu {
   margin-left: -150px;
-  width: 150px;
+  width: 20vw;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   z-index: 1000;
-  background: #00999A;
+  background: #007481;
   overflow: visible;
   -webkit-overflow-scrolling: touch;
 }
@@ -391,10 +406,14 @@ pre.console a {
   vertical-align: middle;
   top: -1px;
   position: relative;
+  margin: 15% 25%;
 }
 
-#menu .pure-menu-item {
-  height:2em;
+#menu .pure-menu-item, .sub-menu-header{
+  line-height: 4vh;
+  padding-left: 2.5vh;
+  text-transform: uppercase;
+  border-bottom: 1px solid #49acb2;
 }
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
@@ -539,5 +558,177 @@ pre.console a {
 }
 
 #version {
-    font-size: 0.7em;
+    font-size: 10pt;
+    position: absolute; 
+    bottom: 0;
+    color: #49acb2;
+    font-weight: normal !important;
+    text-align: center;
+    padding: 0 5%;
+    font-family: TyponineSansMonoText;
+}
+
+hr {
+    border-color: #49acb2;
+}
+
+p.sub-menu-header {
+    color: #49acb2 !important;
+    font-family: TyponineSansMonoText
+    font-size: 12pt;
+    padding-left: 4%;
+    padding-top: 6%;
+    text-transform: uppercase;
+    height: 30px;
+}
+
+.pure-menu-link:hover, li.pure-menu-item.pure-menu-selected, li.pure-menu-item:hover {
+    background-color: #068891 !important;
+}
+
+td.td_key {
+    color : #797979 !important;
+}
+
+td.td_key.sebba {
+    padding-left: 5em;
+}
+
+.pure-table {
+    width: 100%;
+}
+
+.header p {
+    padding: 0 10%;
+    text-align: left;
+}
+
+#change-hostname-button, #change-network-button {
+    /*width: 10vw;*/
+    width: 100% !important;
+    height: 3.5vh;
+    float: left;
+}
+
+#main {
+    width: 80vw;
+    right: 0;
+    position: absolute;
+}
+
+.system-name {
+    float: left;
+    /*margin-bottom: 10%;*/
+    width: 100%;
+    text-align: center;
+}
+
+.td_header {
+    background-color: #e6e7e8 !important;
+}
+
+span.jl {
+    padding: 0 10%;
+    float: left;
+    width: 100%;
+}
+
+legend {
+    color: #797979;
+}
+
+.card h1 {
+    text-transform: uppercase;
+    font-size: 1.5em !important;
+}
+
+.mqtt-button{
+    text-transform: uppercase;
+    width: 80%;
+}
+
+#slip-enable-checkbox{
+    float: left;
+}
+
+#slip-enable-label{
+    text-transform: uppercase;
+}
+
+#menu-list {
+    padding-top: 10%;
+}
+
+.console-options {
+    float: right;
+    text-align: -webkit-right;
+    margin: 8px 0;
+}
+
+button.pure-button.button-primary {
+    width: 100%;
+    text-transform: uppercase;
+}
+
+#change-hostname-input {
+    width: 98%;
+}
+
+#hostname-card td {
+    border: 0;
+}
+
+a.pure-button.button-primary {
+    text-transform: uppercase;
+    width: 100%;
+}
+
+#wifiform, #specform, #mqtt-form, #mqtt-status-form, #sliptext, #slip-enable-div{
+    padding: 0px 18px;
+}
+
+.content .pure-g {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.td_header h1 {
+    color: #007481;
+    font-family: TyponineSansMonoMedium !important;
+    font-size: 13pt !important;
+}
+
+.pure-button {
+    font-family: TyponineSansMonoMedium !important;
+    font-size: 13pt !important;
+}
+
+.pure-g.serial-monitor-input {
+    margin: 0 !important;
+}
+
+.pure-g.debug {
+    margin: 0;
+    width: 100%;
+}
+
+a.pure-menu-link {
+    font-family: TyponineSansMonoMedium;
+    font-size: 13pt;
+}
+
+
+/*@font-face {
+    font-family: TyponineSansLight;
+    src: url("/fonts/TyponineSans-Light.otf");
+}*/
+
+@font-face {
+    font-family: TyponineSansMonoMedium;
+    src: url("/fonts/TypSansMono-Medium.otf");
+}
+
+@font-face {
+    font-family: TyponineSansMonoText;
+    src: url("/fonts/TypSansMono-Text.otf");
 }
