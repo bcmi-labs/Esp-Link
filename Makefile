@@ -364,12 +364,13 @@ $(BUILD_BASE)/espfs_img.o: tools/$(HTML_COMPRESSOR)
 endif
 
 $(BUILD_BASE)/espfs_img.o: html/ html/wifi/ espfs/mkespfsimage/mkespfsimage
-	$(Q) rm -rf html_compressed; mkdir html_compressed; mkdir html_compressed/wifi;
+	$(Q) rm -rf html_compressed; mkdir html_compressed; mkdir html_compressed/wifi;  mkdir html_compressed/fonts;
 	$(Q) cp -r html/*.ico html_compressed;
 	$(Q) cp -r html/*.css html_compressed;
 	$(Q) cp -r html/*.js html_compressed;
 	$(Q) cp -r html/wifi/*.png html_compressed/wifi;
 	$(Q) cp -r html/wifi/*.js html_compressed/wifi;
+	$(Q) cp -r html/fonts/* html_compressed/fonts;
 ifeq ("$(COMPRESS_W_HTMLCOMPRESSOR)","yes")
 	$(Q) echo "Compression assets with htmlcompressor. This may take a while..."
 		$(Q) java -jar tools/$(HTML_COMPRESSOR) \

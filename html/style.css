@@ -137,7 +137,7 @@ fieldset fields {
 }
 
 .pure-table td, .pure-table th {
-  padding: 0.5em 0.5em;
+  /*padding: 0.5em 0.5em;*/
 }
 
 /* Narrow left-aligned Forms */
@@ -219,13 +219,14 @@ div.tt {
   font-size: 1.25em;
 }
 .jl , .header h1 {
-  font: normal 800 1.5em sans-serif;
+  font: normal 800 1.5em TyponineSansMonoMedium;
   position: relative;
   bottom: 19px;
   color: #007481;
-  margin-left: 3px;
+  margin-left: 10%;
   text-transform: uppercase;
   text-align: left;
+  font-size: 18.2pt;
 }
 
 .content-subhead {
@@ -405,7 +406,7 @@ pre.console a {
   vertical-align: middle;
   top: -1px;
   position: relative;
-  margin-left: 25%;
+  margin: 15% 25%;
 }
 
 #menu .pure-menu-item, .sub-menu-header{
@@ -557,13 +558,14 @@ pre.console a {
 }
 
 #version {
-    font-size: 0.7em;
+    font-size: 10pt;
     position: absolute; 
     bottom: 0;
     color: #49acb2;
     font-weight: normal !important;
     text-align: center;
     padding: 0 5%;
+    font-family: TyponineSansMonoText;
 }
 
 hr {
@@ -572,15 +574,15 @@ hr {
 
 p.sub-menu-header {
     color: #49acb2 !important;
-    font-family: sans-serif;
-    font-size: x-small;
+    font-family: TyponineSansMonoText
+    font-size: 12pt;
     padding-left: 4%;
     padding-top: 6%;
-    padding-bottom: 1%;
     text-transform: uppercase;
+    height: 30px;
 }
 
-.pure-menu-link:hover {
+.pure-menu-link:hover, li.pure-menu-item.pure-menu-selected, li.pure-menu-item:hover {
     background-color: #068891 !important;
 }
 
@@ -660,10 +662,12 @@ legend {
 .console-options {
     float: right;
     text-align: -webkit-right;
+    margin: 8px 0;
 }
 
 button.pure-button.button-primary {
     width: 100%;
+    text-transform: uppercase;
 }
 
 #change-hostname-input {
@@ -677,4 +681,54 @@ button.pure-button.button-primary {
 a.pure-button.button-primary {
     text-transform: uppercase;
     width: 100%;
+}
+
+#wifiform, #specform, #mqtt-form, #mqtt-status-form, #sliptext, #slip-enable-div{
+    padding: 0px 18px;
+}
+
+.content .pure-g {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.td_header h1 {
+    color: #007481;
+    font-family: TyponineSansMonoMedium !important;
+    font-size: 13pt !important;
+}
+
+.pure-button {
+    font-family: TyponineSansMonoMedium !important;
+    font-size: 13pt !important;
+}
+
+.pure-g.serial-monitor-input {
+    margin: 0 !important;
+}
+
+.pure-g.debug {
+    margin: 0;
+    width: 100%;
+}
+
+a.pure-menu-link {
+    font-family: TyponineSansMonoMedium;
+    font-size: 13pt;
+}
+
+
+/*@font-face {
+    font-family: TyponineSansLight;
+    src: url("/fonts/TyponineSans-Light.otf");
+}*/
+
+@font-face {
+    font-family: TyponineSansMonoMedium;
+    src: url("/fonts/TypSansMono-Medium.otf");
+}
+
+@font-face {
+    font-family: TyponineSansMonoText;
+    src: url("/fonts/TypSansMono-Text.otf");
 }

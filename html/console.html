@@ -1,31 +1,31 @@
   <div id="main" class="flex-fill flex-vbox" style="max-height:100%">
     <div class="header">
-      <span class="jl">SERIAL MONITOR</span>
+      <h1 class="jl">SERIAL MONITOR</h1>
     </div>
 
     <div class="content flex-fill flex-vbox">
       <pre class="console flex-fill" id="console">--- No Content ---</pre>
       <div> 
         <br>
-        <div class="pure-g">
+        <div class="pure-g serial-monitor-input">
             <div class="pure-u-1-4"><legend><b>Text entry</b></legend></div>
           <div class="pure-u-2-4">
             <legend>(ENTER to submit, ESC to clear)</legend>
           </div>
         </div>
-        <div class="pure-g">
+        <div class="pure-g serial-monitor-input">
           <div class="pure-u-1-1">
             <span style="float:right; width:10px;"></span>
               <input type="text" class="console-in" id="input-text" value=""></input>
           </div>
         </div>
         <br>
-        <div class="pure-g">
+        <div class="pure-g serial-monitor-input">
           <div class="pure-u-1-4"><legend><b>History</b></legend></div>
           <div class="pure-u-2-4"><legend>(UP/DOWN arrows to select)</legend></div>
           <div class="pure-u-1-4"></div>
         </div>
-        <div class="pure-g">
+        <div class="pure-g serial-monitor-input">
           <div class="pure-u-1-1"><select class="console-in" id="send-history" size="5"></select></div>
         </div>
         <br>
@@ -57,21 +57,6 @@
         function(s, st) { showWarning("Error resetting uC"); }
       );
     });
-
-
-    /*ajaxJson('GET', "/console/baud",
-      function(data) { $("#baud-sel").value = data.rate; },
-      function(s, st) { showNotification(st); }
-    );
-
-    bnd($("#baud-sel"), "change", function(ev) {
-      ev.preventDefault();
-      var baud = $("#baud-sel").value;
-      ajaxSpin('POST', "/console/baud?rate="+baud,
-        function(resp) { showNotification("" + baud + " baud set"); },
-        function(s, st) { showWarning("Error setting baud rate: " + st); }
-      );
-    });*/
 
     consoleSendInit();
 
