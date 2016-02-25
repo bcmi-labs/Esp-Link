@@ -608,7 +608,7 @@ td.td_key.sebba {
 }
 
 .header p {
-    padding: 0 10%;
+    padding: 0 11%;
     text-align: left;
 }
 
@@ -681,6 +681,7 @@ button.pure-button.button-primary {
 
 #change-hostname-input {
     width: 98%;
+    margin-top: 16px;
 }
 
 #hostname-card td {
@@ -734,17 +735,26 @@ a.pure-menu-link {
     width: 735px;
 }
 
-#mqtt-form {
-    margin-top: 16px;
-}
-
-#enable-status-report {
+#mqtt-form, #enable-status-report, form#specform {
     margin-top: 16px;
 }
 
 .console-box {
     margin-left: 113px !important;
 }
+
+.button-larger-margin {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/*#enable-status-report {
+    margin-top: 16px;
+}
+
+form#specform {
+    margin-top: 16px;
+}*/
 
 /*@font-face {
     font-family: TyponineSansLight;
