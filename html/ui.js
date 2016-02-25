@@ -229,14 +229,17 @@ onLoad(function() {
   // menu hamburger button
   l.insertBefore(m('<a href="#menu" id="menuLink" class="menu-link"><span></span></a>'), o);
   // menu left-pane
+    
   var mm = m(
    '<div id="menu">\
       <div class="pure-menu">\
         <a class="pure-menu-heading" href=".">\
         <img src="/favicon.ico" height="128"></a>\
-        <div class="pure-menu-heading system-name" style="padding: 0px 0.6em"></div>\
         <ul id="menu-list" class="pure-menu-list"></ul>\
+        <p class="sub-menu-header">settings</p>\
+        <ul id="menu-list-settings" class="pure-menu-list"></ul>\
       </div>\
+      <h3 id="version"></h3>\
     </div>\
     ');
   l.insertBefore(mm, o);
@@ -260,20 +263,26 @@ onLoad(function() {
   // populate menu via ajax call
   var getMenu = function() {
     ajaxJson("GET", "/menu", function(data) {
-      var html = "", path = window.location.pathname;
+      var html = "", htmlsettings = "", path = window.location.pathname;
       for (var i=0; i<data.menu.length; i+=2) {
         var href = data.menu[i+1];
-        html = html.concat(" <li class=\"pure-menu-item" +
-            (path === href ? " pure-menu-selected" : "") + "\">" +
-            "<a href=\"" + href + "\" class=\"pure-menu-link\">" +
-            data.menu[i] + "</a></li>");
+        if(i < 4)
+            html = html.concat(" <li class=\"pure-menu-item" +
+                (path === href ? " pure-menu-selected" : "") + "\">" +
+                "<a href=\"" + href + "\" class=\"pure-menu-link\">" +
+                data.menu[i] + "</a></li>");
+        else
+            htmlsettings = htmlsettings.concat(" <li class=\"pure-menu-item" +
+                (path === href ? " pure-menu-selected" : "") + "\">" +
+                "<a href=\"" + href + "\" class=\"pure-menu-link\">" +
+                data.menu[i] + "</a></li>");
+          
       }
       $("#menu-list").innerHTML = html;
+      $("#menu-list-settings").innerHTML = htmlsettings;
 
       var v = $("#version");
       if (v != null) { v.innerHTML = data.version; }
-
-      setEditToClick("system-name", data["name"]);
     }, function() { setTimeout(getMenu, 1000); });
   };
   getMenu();
