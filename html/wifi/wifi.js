@@ -192,6 +192,23 @@ function changeSpecial(e) {
     });
 }
 
+function changeHostname(){
+    var h = $("#change-hostname-input").value;
+    if (h == "")
+        alert ("Insert hostname!")
+    else
+        ajaxSpin("POST", "/system/update?name="+h, function() {alert("Hostname changed in : " + h)});
+}
+
+function hostnameLimitations(keyEvent){
+    var regex = new RegExp("^[a-zA-Z0-9\b]+$");
+    var key = String.fromCharCode(!keyEvent.charCode ? keyEvent.which : keyEvent.charCode);
+    if (!regex.test(key)) {
+       keyEvent.preventDefault();
+       return false;
+    }
+}
+
 function doDhcp() {
   $('#dhcp-on').removeAttribute('hidden');
   $('#dhcp-off').setAttribute('hidden', '');

@@ -517,9 +517,9 @@ static char *connStatuses[] = { "idle", "connecting", "wrong password", "AP not 
                          "failed", "got IP address" };
 
 static char *wifiWarn[] = { 0,
-  "Switch to <a href=\\\"#\\\" onclick=\\\"changeWifiMode(3)\\\">STA+AP mode</a>",
-  "<b>Can't scan in this mode!</b> Switch to <a href=\\\"#\\\" onclick=\\\"changeWifiMode(3)\\\">STA+AP mode</a>",
-  "Switch to <a href=\\\"#\\\" onclick=\\\"changeWifiMode(1)\\\">STA mode</a>",
+  "<a href=\\\"#\\\" class=\\\"pure-button button-primary\\\" onclick=\\\"changeWifiMode(3)\\\">Switch to STA+AP mode</a>",
+  "<a href=\\\"#\\\" class=\\\"pure-button button-primary\\\" onclick=\\\"changeWifiMode(3)\\\"><b>Can't scan in this mode!</b> Switch to STA+AP mode</a>",
+  "<a href=\\\"#\\\" class=\\\"pure-button button-primary\\\" onclick=\\\"changeWifiMode(1)\\\">Switch to STA mode</a>",
 };
 
 #ifdef CHANGE_TO_STA
