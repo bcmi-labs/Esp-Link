@@ -36,8 +36,8 @@ function displayMqtt(data) {
       else el.value = data[v];
     }
   });
-  $("#mqtt-spinner").setAttribute("hidden", "");
-  $("#mqtt-status-spinner").setAttribute("hidden", "");
+  /*$("#mqtt-spinner").setAttribute("hidden", "");
+  $("#mqtt-status-spinner").setAttribute("hidden", "");*/
   $("#mqtt-form").removeAttribute("hidden");
   $("#mqtt-status-form").removeAttribute("hidden");
 
