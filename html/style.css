@@ -352,6 +352,9 @@ pre.console a {
   float: right;
 }
 
+#reset-button {
+    text-transform: none !important;
+}
 
 
 .lock-icon {
@@ -691,6 +694,9 @@ button.pure-button.button-primary {
 a.pure-button.button-primary {
     text-transform: uppercase;
     width: 100%;
+}
+
+.abutton {
     padding-bottom: 15% !important;
     padding-top: 5% !important;
 }
@@ -748,6 +754,10 @@ a.pure-menu-link {
 .button-larger-margin {
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+#slip-enable-div{
+    padding-bottom: 10px;
 }
 
 /*#enable-status-report {
