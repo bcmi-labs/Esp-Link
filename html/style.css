@@ -691,6 +691,8 @@ button.pure-button.button-primary {
 a.pure-button.button-primary {
     text-transform: uppercase;
     width: 100%;
+    padding-bottom: 15% !important;
+    padding-top: 5% !important;
 }
 
 #wifiform, #specform, #mqtt-form, #mqtt-status-form, #sliptext, #slip-enable-div{
