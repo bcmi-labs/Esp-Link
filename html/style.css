@@ -208,7 +208,7 @@ div.tt {
   padding: 2.5em 2em 0;
   border-bottom: 1px solid #eee;
   background-color: #f5f6f6;
-  height: 15vh;
+  height: 100%;
 }
 .header h1 {
   margin: 0.2em 0;
@@ -374,7 +374,8 @@ pre.console a {
   bottom: 0;
   z-index: 1000;
   background: #007481;
-  overflow: visible;
+  /*overflow: visible;*/
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -570,13 +571,17 @@ pre.console a {
 
 #version {
     font-size: 10pt;
-    position: absolute; 
+    /*position: absolute;*/
     bottom: 0;
     color: #49acb2;
     font-weight: normal !important;
     text-align: center;
     padding: 0 5%;
     font-family: TyponineSansMonoText;
+    
+    position: relative;
+    margin-bottom: 0;
+    margin-top: 80%;
 }
 
 hr {
@@ -616,9 +621,10 @@ td.td_key.sebba {
 }
 
 #change-hostname-button, #change-network-button {
-    /*width: 10vw;*/
+    /*width: 10vw;
+    height: 3.5vh;*/
     width: 100% !important;
-    height: 3.5vh;
+    
     float: left;
 }
 
@@ -683,8 +689,11 @@ button.pure-button.button-primary {
 }
 
 #change-hostname-input {
-    width: 98%;
+    width: 99%;
     margin-top: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 30px;
 }
 
 #hostname-card td {
@@ -694,11 +703,6 @@ button.pure-button.button-primary {
 a.pure-button.button-primary {
     text-transform: uppercase;
     width: 100%;
-}
-
-.abutton {
-    padding-bottom: 15% !important;
-    padding-top: 5% !important;
 }
 
 #wifiform, #specform, #mqtt-form, #mqtt-status-form, #sliptext, #slip-enable-div{
@@ -758,6 +762,22 @@ a.pure-menu-link {
 
 #slip-enable-div{
     padding-bottom: 10px;
+}
+
+/*
+#change-hostname-button {
+    padding-bottom: 5% !important;
+    padding-top: 2% !important;
+}
+
+#change-network-button {
+    padding-bottom: 5% !important;
+    padding-top: 2% !important;
+}*/
+
+.abutton {
+    padding-bottom: 15% !important;
+    padding-top: 5% !important;
 }
 
 /*#enable-status-report {

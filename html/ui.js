@@ -329,8 +329,8 @@ function showSystemInfo(data) {
   Object.keys(data).forEach(function(v) {
     setEditToClick("system-"+v, data[v]);
   });
-  $("#system-spinner").setAttribute("hidden", "");
-  $("#system-table").removeAttribute("hidden");
+  //$("#system-spinner").setAttribute("hidden", "");
+  //$("#system-table").removeAttribute("hidden");
   currAp = data.ssid;
 }
 
@@ -490,4 +490,8 @@ function setPins(ev) {
     showWarning(errMsg);
     window.setTimeout(fetchPins, 100);
   });
+}
+
+function changeToWifiPage(ev) {
+    window.location.href = "./wifi/wifi.html";
 }

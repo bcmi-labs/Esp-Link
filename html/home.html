@@ -17,10 +17,10 @@
                   <td class="td_header" colspan="3"><h1>Summary</h1></td>
               </tr>
               <tr>
-                  <td class="td_key">Hostname</td><td id="wifi-hostname"></td><td><a id="change-hostname-button" class="pure-button button-primary abutton" href="./wifi/wifi.html">CHANGE</a></td>
+                  <td class="td_key">Hostname</td><td id="wifi-hostname"></td><td><button id="change-hostname-button" class="pure-button button-primary">CHANGE</button></td>
               </tr>
               <tr>
-                  <td class="td_key">Network SSID</td><td id="wifi-ssid"></td><td><a id="change-network-button" class="pure-button button-primary abutton" href="./wifi/wifi.html">CHANGE</a></td> 
+                  <td class="td_key">Network SSID</td><td id="wifi-ssid"></td><td><button id="change-network-button" class="pure-button button-primary" href="./wifi/wifi.html">CHANGE</button></td> 
               </tr>
               <tr>
                   <td class="td_key">Wifi status</td><td id="wifi-status"></td><td></td>
@@ -71,7 +71,9 @@ onLoad(function() {
   fetchPins();
   getWifiInfo();
   getSystemInfo();
-  bnd($("#pinform"), "submit", setPins);
+  //bnd($("#pinform"), "submit", setPins);
+  bnd($("#change-hostname-button"), "click", changeToWifiPage);
+  bnd($("#change-network-button"), "click", changeToWifiPage);
 });
 </script>
 </body></html>
