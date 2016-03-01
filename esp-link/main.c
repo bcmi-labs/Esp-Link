@@ -33,6 +33,7 @@
 #include "syslog.h"
 #include "cgiservices.h"
 #include "cgiarduino.h"
+#include "cgiwebserver.h"
 
 #define NOTICE(format, ...) do {	                                          \
 	LOG_NOTICE(format, ## __VA_ARGS__ );                                      \
@@ -82,6 +83,7 @@ HttpdBuiltInUrl builtInUrls[] = {
   { "/arduino/analog/", cgiArduino, NULL },
   { "/arduino/digital/", cgiArduino, NULL },
   { "/arduino/mode/", cgiArduino, NULL },
+  { "/arduino/webserver/", cgiWebserver, NULL },
 #ifdef MQTT
   { "/mqtt", cgiMqtt, NULL },
 #endif  

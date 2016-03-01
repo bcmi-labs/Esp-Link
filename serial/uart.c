@@ -209,14 +209,16 @@ uart0_rx_intr_handler(void *para)
 
 uint16 length = 0;
 	if (UART_FORCE == 1){
-		while (READ_PERI_REG(UART_STATUS(UART0)) & (UART_RXFIFO_CNT << UART_RXFIFO_CNT_S)) {
 
+		while (READ_PERI_REG(UART_STATUS(UART0)) & (UART_RXFIFO_CNT << UART_RXFIFO_CNT_S)) {
+	
     			while ((READ_PERI_REG(UART_STATUS(UART0)) & (UART_RXFIFO_CNT << UART_RXFIFO_CNT_S)) &&
           		 (length < 128)) {
       					buff_console[length++] = READ_PERI_REG(UART_FIFO(UART0)) & 0xFF;
-				}
-		 	ready=1;
+				}		 	
+			ready=1;
 			}
+
 		for (int i=0; i<MAX_CB; i++) {
       			if (uart_recv_cb[i] != NULL) {(uart_recv_cb[i])(buff_console, length);}
     		} 
