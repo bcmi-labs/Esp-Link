@@ -209,6 +209,7 @@ div.tt {
   border-bottom: 1px solid #eee;
   background-color: #f5f6f6;
   height: 100%;
+  width: 100%;
 }
 .header h1 {
   margin: 0.2em 0;
@@ -607,12 +608,9 @@ td.td_key {
     color : #797979 !important;
 }
 
-td.td_key.sebba {
-    padding-left: 5em;
-}
-
 .pure-table {
     width: 100%;
+    background-color: #f5f6f6;
 }
 
 .header p {
@@ -709,6 +707,10 @@ a.pure-button.button-primary {
     padding: 0px 18px;
 }
 
+#mqtt-form, #enable-status-report, form#specform {
+    padding-top: 3% !important;
+}
+
 .content .pure-g {
     width: 80%;
     margin: 0 10%;
@@ -722,11 +724,14 @@ a.pure-button.button-primary {
 
 .pure-button {
     font-family: TyponineSansMonoMedium !important;
-    font-size: 13pt !important;
+    /*font-size: 13pt !important;*/
+    font-size: 1rem !important;
 }
 
 .pure-g.serial-monitor-input {
     margin: 0 !important;
+    margin-right: 10.5%;
+    width: 100%;
 }
 
 .pure-g.debug {
@@ -739,20 +744,14 @@ a.pure-menu-link {
     font-size: 13pt;
 }
 
-#send-history {
-    width: 735px;
+#send-history, #input-text  {
+    width: 100%;
 }
 
-#input-text {
-    width: 735px;
-}
-
-#mqtt-form, #enable-status-report, form#specform {
-    margin-top: 16px;
-}
 
 .console-box {
-    margin-left: 113px !important;
+    margin-left: 10.5% !important;
+    margin-right: 10.5% !important;
 }
 
 .button-larger-margin {
