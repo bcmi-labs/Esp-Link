@@ -67,7 +67,7 @@ for(int j=0; j < 5; j++){
 
 int ICACHE_FLASH_ATTR cgiArduinoWebSet(HttpdConnData *connData) {
   if (connData->conn==NULL) return HTTPD_CGI_DONE; // Connection aborted
-	DBG_REST("ARDUINO REST: cgiArduinoSet POST enter\n");
+	//DBG_REST("ARDUINO REST: cgiArduinoSet POST enter\n"); debug
 	uart0_write_char('B');
   return HTTPD_CGI_DONE;
 }
@@ -78,7 +78,7 @@ int ICACHE_FLASH_ATTR cgiWebserver(HttpdConnData *connData) {
   if (connData->conn==NULL) return HTTPD_CGI_DONE; // Connection aborted. Clean up.
   if (connData->requestType == HTTPD_METHOD_GET) {
 
-    	DBG_REST("ARDUINO REST content: %s \n", connData->url);
+    	//DBG_REST("ARDUINO REST content: %s \n", connData->url); debug
 
 	for(int i=0; i < strlen(connData->url); i++)
         uart0_write_char(connData->url[i]);

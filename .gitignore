@@ -18,3 +18,4 @@ tools/
 local.conf
 *.tgz
 *~
+firmware/
