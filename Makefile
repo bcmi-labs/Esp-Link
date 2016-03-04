@@ -46,7 +46,7 @@ ESPBAUD		?= 9600
 # STA_PASS ?= 
 
 # hostname or IP address for wifi flashing
-ESP_HOSTNAME        ?= arduino
+ESP_HOSTNAME        ?= uno-wifi
 
 # --------------- chipset configuration   ---------------
 
@@ -166,7 +166,6 @@ SHA     := $(shell if git diff --quiet HEAD; then git rev-parse --short HEAD | c
 VERSION ?=esp-link $(BRANCH) - $(DATE) - $(SHA)
 
 # Output directors to store intermediate compiled files
-# relative to the project directory
 BUILD_BASE	= build
 FW_BASE		= firmware
 

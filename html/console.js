@@ -141,6 +141,11 @@ function consoleSendInit() {
   });
 }
 
+function clearConsole() {
+    var el = $("#console");
+    el.innerHTML = "";
+}
+
 //===== Log page
 
 function showDbgMode(mode) {

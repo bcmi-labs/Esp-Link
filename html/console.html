@@ -1,11 +1,18 @@
-  <div id="main" class="flex-fill flex-vbox" style="max-height:100%">
+  <div id="main">
     <div class="header">
-      <h1 class="jl">SERIAL MONITOR</h1>
+      <h1 class="jl">WiFi CONSOLE</h1>
     </div>
 
     <div class="content flex-fill flex-vbox console-box">
       <pre class="console flex-fill" id="console">--- No Content ---</pre>
       <div> 
+        <div class="pure-u-1-2 console-options">
+            <legend>
+              <input type="checkbox" id="input-scroll" checked class="inline"><label>Autoscroll</label>
+              <input type="checkbox" id="input-add-cr" checked class="inline"><label>CR(\r)</label>
+              <input type="checkbox" id="input-add-lf" checked class="inline"><label>LF(\n)</label>
+            </legend>
+        </div>
         <br>
         <div class="pure-g serial-monitor-input">
             <div class="pure-u-1-4"><legend><b>Text entry</b></legend></div>
@@ -15,7 +22,6 @@
         </div>
         <div class="pure-g serial-monitor-input">
           <div class="pure-u-1-1">
-            <span style="float:right; width:10px;"></span>
               <input type="text" class="console-in" id="input-text" value=""></input>
           </div>
         </div>
@@ -30,13 +36,7 @@
         </div>
         <br>
         <a id="reset-button" class="pure-button button-primary">RESET &#xb5;C</a>
-        <div class="pure-u-1-2 console-options">
-            <legend>
-              <input type="checkbox" id="input-scroll" checked class="inline"><label>Autoscroll</label>
-              <input type="checkbox" id="input-add-cr" checked class="inline"><label>CR(\r)</label>
-              <input type="checkbox" id="input-add-lf" checked class="inline"><label>LF(\n)</label>
-            </legend>
-        </div>
+        <a id="clear-console-button" class="pure-button button-primary">CLEAR CONSOLE</a>
       </div>
     </div>
   </div>
@@ -57,6 +57,8 @@
         function(s, st) { showWarning("Error resetting uC"); }
       );
     });
+    
+    $("#clear-console-button").addEventListener("click", clearConsole);
 
     consoleSendInit();
 

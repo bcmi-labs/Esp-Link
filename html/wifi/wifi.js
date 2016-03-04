@@ -196,8 +196,10 @@ function changeHostname(){
     var h = $("#change-hostname-input").value;
     if (h == "")
         alert ("Insert hostname!")
-    else
+    else{
         ajaxSpin("POST", "/system/update?name="+h, function() {alert("Hostname changed in : " + h)});
+        document.title += "-"+h;
+    }
 }
 
 function hostnameLimitations(keyEvent){

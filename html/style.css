@@ -209,6 +209,7 @@ div.tt {
   border-bottom: 1px solid #eee;
   background-color: #f5f6f6;
   height: 100%;
+  width: 100%;
 }
 .header h1 {
   margin: 0.2em 0;
@@ -349,7 +350,7 @@ pre.console a {
 .dbg-btn, #log-reset-button {
   vertical-align: baseline;
   width: 48%;
-  float: right;
+  float: left;
 }
 
 #reset-button {
@@ -374,7 +375,8 @@ pre.console a {
   bottom: 0;
   z-index: 1000;
   background: #007481;
-  overflow: visible;
+  /*overflow: visible;*/
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -424,7 +426,7 @@ pre.console a {
   line-height: 4vh;
   padding-left: 2.5vh;
   text-transform: uppercase;
-  border-bottom: 1px solid #49acb2;
+  border-bottom: 1px solid #00979C;
 }
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
@@ -480,10 +482,11 @@ pre.console a {
     padding-left: 150px;
     left: 0;
   }
+    
   #menu {
     left: 150px;
   }
-
+    
   .menu-link {
     position: fixed;
     left: 150px;
@@ -517,11 +520,15 @@ pre.console a {
   background-color: #933;
   color: #fcc;
   padding: 0.1em 0.4em;
+  position: fixed;
+  margin-left: 25%;
 }
 #notification {
   background-color: #693;
   color: #cfc;
   padding: 0.1em 0.4em;
+  position: fixed;
+  margin-left: 25%;
 }
 
 #spinner {
@@ -570,21 +577,25 @@ pre.console a {
 
 #version {
     font-size: 10pt;
-    position: absolute; 
+    /*position: absolute;*/
     bottom: 0;
-    color: #49acb2;
+    color: #00979C;
     font-weight: normal !important;
     text-align: center;
     padding: 0 5%;
     font-family: TyponineSansMonoText;
+    
+    position: relative;
+    margin-bottom: 0;
+    margin-top: 80%;
 }
 
 hr {
-    border-color: #49acb2;
+    border-color: #00979C;
 }
 
 p.sub-menu-header {
-    color: #49acb2 !important;
+    color: #00979C !important;
     font-family: TyponineSansMonoText;
     font-size: 9pt;
     padding-left: 4%;
@@ -595,19 +606,16 @@ p.sub-menu-header {
 }
 
 .pure-menu-link:hover, li.pure-menu-item.pure-menu-selected, li.pure-menu-item:hover {
-    background-color: #068891 !important;
+    background-color: #00979C !important;
 }
 
 td.td_key {
     color : #797979 !important;
 }
 
-td.td_key.sebba {
-    padding-left: 5em;
-}
-
 .pure-table {
     width: 100%;
+    background-color: #f5f6f6;
 }
 
 .header p {
@@ -704,6 +712,10 @@ a.pure-button.button-primary {
     padding: 0px 18px;
 }
 
+#mqtt-form, #enable-status-report, form#specform {
+    padding-top: 3% !important;
+}
+
 .content .pure-g {
     width: 80%;
     margin: 0 10%;
@@ -717,11 +729,14 @@ a.pure-button.button-primary {
 
 .pure-button {
     font-family: TyponineSansMonoMedium !important;
-    font-size: 13pt !important;
+    /*font-size: 13pt !important;*/
+    font-size: .8rem !important;
 }
 
 .pure-g.serial-monitor-input {
     margin: 0 !important;
+    margin-right: 10.5%;
+    width: 100%;
 }
 
 .pure-g.debug {
@@ -734,20 +749,14 @@ a.pure-menu-link {
     font-size: 13pt;
 }
 
-#send-history {
-    width: 735px;
+#send-history, #input-text  {
+    width: 100%;
 }
 
-#input-text {
-    width: 735px;
-}
-
-#mqtt-form, #enable-status-report, form#specform {
-    margin-top: 16px;
-}
 
 .console-box {
-    margin-left: 113px !important;
+    margin-left: 10.5% !important;
+    margin-right: 10.5% !important;
 }
 
 .button-larger-margin {
@@ -773,6 +782,21 @@ a.pure-menu-link {
 .abutton {
     padding-bottom: 15% !important;
     padding-top: 5% !important;
+}
+
+
+#clear-console-button {
+  vertical-align: baseline;
+  width: 48%;
+  float: right;
+}
+
+.dbg-log {
+    width: 30% !important;
+}
+
+.dbg-log#clear-console-button, .dbg-log#log-reset-button  {
+    margin-left: 5% !important;
 }
 
 /*#enable-status-report {

@@ -7,8 +7,9 @@
       <pre id="console" class="console" style="margin-top: 0px;"></pre>
       <div class="pure-g debug">
         <p class="pure-u-1-1" style="vertical-align: baseline;">
-          <a id="refresh-button" class="pure-button button-primary" href="#">Refresh</a>
-          <a id="log-reset-button" class="dbg-btn pure-button button-primary" href="#">Wifi reboot</a>
+          <a id="refresh-button" class="pure-button button-primary dbg-log" href="#">Refresh</a>
+          <a id="log-reset-button" class="dbg-btn pure-button button-primary dbg-log" href="#">Wifi reboot</a>
+          <a id="clear-console-button" class="dbg-btn pure-button button-primary dbg-log" href="#">Clear Console</a>
         </p>
       </div>
     </div>
@@ -35,6 +36,9 @@
           function (s, st) { showWarning("Error resetting esp-link"); }
         );
     });
+    
+    $("#clear-console-button").addEventListener("click", clearConsole);
+
 
     /*["auto", "off", "on0", "on1"].forEach(function(mode) {
       bnd($('#dbg-'+mode), "click", function(el) {

@@ -234,7 +234,7 @@ onLoad(function() {
    '<div id="menu">\
       <div class="pure-menu">\
         <a class="pure-menu-heading" href=".">\
-        <img src="/favicon.ico" height="128"></a>\
+        <img src="/logo.ico" height="128"></a>\
         <ul id="menu-list" class="pure-menu-list"></ul>\
         <p class="sub-menu-header">settings</p>\
         <ul id="menu-list-settings" class="pure-menu-list"></ul>\
@@ -250,9 +250,12 @@ onLoad(function() {
 //    console.log("hamburger time");
       var active = 'active';
       e.preventDefault();
+
       toggleClass(l, active);
       toggleClass(mm, active);
       toggleClass(ml, active);
+      
+      setTimeout(closeMenu, 10000);
   });
 
   // hide pop-ups
@@ -286,7 +289,17 @@ onLoad(function() {
     }, function() { setTimeout(getMenu, 1000); });
   };
   getMenu();
+    
+  bnd($('#main'), 'click', function(){closeMenu()});
+  
+   var closeMenu = function (){
+    removeClass(l, "active");
+    removeClass(mm, "active");
+    removeClass(ml, "active"); 
+}
 });
+
+
 
 //===== Wifi info
 
@@ -300,9 +313,15 @@ function showWifiInfo(data) {
   });
   var dhcp = $('#dhcp-r'+data.dhcp);
   if (dhcp) dhcp.click();
-  $("#wifi-spinner").setAttribute("hidden", "");
+  var ws = $("#wifi-spinner");
+  if(ws != null)    
+    ws.setAttribute("hidden", "");
   $("#wifi-table").removeAttribute("hidden");
+  var chi = $("#change-hostname-input")
+  if (chi != null)
+      chi.placeholder = data['hostname'];
   currAp = data.ssid;
+  
 }
 
 function getWifiInfo() {
@@ -329,8 +348,8 @@ function showSystemInfo(data) {
   Object.keys(data).forEach(function(v) {
     setEditToClick("system-"+v, data[v]);
   });
-  $("#system-spinner").setAttribute("hidden", "");
-  $("#system-table").removeAttribute("hidden");
+  //$("#system-spinner").setAttribute("hidden", "");
+  //$("#system-table").removeAttribute("hidden");
   currAp = data.ssid;
 }
 
@@ -495,3 +514,5 @@ function setPins(ev) {
 function changeToWifiPage(ev) {
     window.location.href = "./wifi/wifi.html";
 }
+
+ajaxJson('GET', "/wifi/info", function(data) { document.title += "-"+data['hostname'] });
