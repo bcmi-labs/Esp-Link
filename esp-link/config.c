@@ -13,7 +13,7 @@ FlashConfig flashDefault = {
   .reset_pin    = MCU_RESET_PIN, .isp_pin = MCU_ISP_PIN,
   .conn_led_pin = LED_CONN_PIN, .ser_led_pin = LED_SERIAL_PIN,
   .baud_rate    = 9600,
-  .hostname     = "arduino\0",
+  .hostname     = "uno-wifi\0",
   .staticip     = 0,
   .netmask      = 0x00ffffff,
   .gateway      = 0,
