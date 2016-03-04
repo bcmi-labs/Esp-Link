@@ -120,13 +120,14 @@ void ICACHE_FLASH_ATTR wifiStartMDNS(struct ip_addr ip) {
     mdns_info->server_port = 80;
     mdns_info->ipAddr = ip.addr;
     mdns_info->txt_data[0] = "board=unowifi";
-    mdns_info->txt_data[1] = "distro_version=0.1";
-    mdns_info->txt_data[2] = "ssh_upload=no";
-    mdns_info->txt_data[3] = "tcp_check=yes";
-    mdns_info->txt_data[4] = "auth_upload=no";
-    espconn_mdns_init(mdns_info);    
+    mdns_info->txt_data[1] = "distro_name=esplink";
+    mdns_info->txt_data[2] = "distro_version=0.1";
+    mdns_info->txt_data[3] = "ssh_upload=no";
+    mdns_info->txt_data[4] = "tcp_check=yes";
+    mdns_info->txt_data[5] = "auth_upload=no";
+    espconn_mdns_init(mdns_info);
   }
-  else {    
+  else {
     espconn_mdns_server_unregister();
     espconn_mdns_close();
   }
@@ -660,16 +661,16 @@ void ICACHE_FLASH_ATTR wifiInit() {
   apConfig.ssid[14] = 70;  //F
   apConfig.ssid[15] = 105;  //i
   apConfig.ssid[16] = 45;  //-
-  apConfig.ssid[17] = macaddress[9]; 
-  apConfig.ssid[18] = macaddress[10]; 
-  apConfig.ssid[19] = macaddress[12]; 
-  apConfig.ssid[20] = macaddress[13];  
+  apConfig.ssid[17] = macaddress[9];
+  apConfig.ssid[18] = macaddress[10];
+  apConfig.ssid[19] = macaddress[12];
+  apConfig.ssid[20] = macaddress[13];
   apConfig.ssid[21] = macaddress[15];
   apConfig.ssid[22] = macaddress[16];
 
 
   apConfig.password[0] = 0;
-  apConfig.channel = 6 ; 
+  apConfig.channel = 6 ;
   apConfig.authmode = AUTH_OPEN ;
   apConfig.ssid_hidden = 0;	// Note: default 0
   apConfig.max_connection = 4;	// Note: default 4, max 4
@@ -708,4 +709,3 @@ void ICACHE_FLASH_ATTR wifiInit() {
   os_timer_setfn(&resetTimer, resetTimerCb, NULL);
   os_timer_arm(&resetTimer, RESET_TIMEOUT, 0);
 }
-
