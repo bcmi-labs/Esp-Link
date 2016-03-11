@@ -318,10 +318,19 @@ function showWifiInfo(data) {
     ws.setAttribute("hidden", "");
   $("#wifi-table").removeAttribute("hidden");
   var chi = $("#change-hostname-input")
-  if (chi != null)
-      chi.placeholder = data['hostname'];
+  if (chi != null){
+      //chi.placeholder = data['hostname'];
+      chi.value = data['hostname'];
+  }
   currAp = data.ssid;
-  
+  var mb = $("#wifi-warn");
+    if (mb != null){
+        var mbc = mb.children[0];
+        if(currAp == "" || currAp == null){
+            mbc.onclick = "";
+            bnd(mbc, "click", function(ev){showConfigWiFiMessage()} );
+        }
+    }
 }
 
 function getWifiInfo() {
@@ -515,4 +524,8 @@ function changeToWifiPage(ev) {
     window.location.href = "./wifi/wifi.html";
 }
 
-ajaxJson('GET', "/wifi/info", function(data) { document.title += "-"+data['hostname'] });
+function showConfigWiFiMessage(){
+    alert("Please connect to an existing wifi to enable this function.")
+}
+    
+ajaxJson('GET', "/wifi/info", function(data) { document.title += " - "+data['hostname'] });

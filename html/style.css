@@ -619,7 +619,7 @@ td.td_key {
 }
 
 .header p {
-    padding: 0 11%;
+    padding: 0 14.5% 0 11%;
     text-align: left;
 }
 
@@ -646,6 +646,7 @@ td.td_key {
 
 .td_header {
     background-color: #e6e7e8 !important;
+    
 }
 
 span.jl {
@@ -721,10 +722,15 @@ a.pure-button.button-primary {
     margin: 0 10%;
 }
 
+td.td_header {
+    padding-left: 0px; 
+}
+
 .td_header h1 {
     color: #007481;
     font-family: TyponineSansMonoMedium !important;
     font-size: 13pt !important;
+    padding-left: .7em;
 }
 
 .pure-button {
@@ -755,8 +761,8 @@ a.pure-menu-link {
 
 
 .console-box {
-    margin-left: 10.5% !important;
-    margin-right: 10.5% !important;
+    margin-left: 10.2% !important;
+    margin-right: 10.2% !important;
 }
 
 .button-larger-margin {
@@ -767,17 +773,6 @@ a.pure-menu-link {
 #slip-enable-div{
     padding-bottom: 10px;
 }
-
-/*
-#change-hostname-button {
-    padding-bottom: 5% !important;
-    padding-top: 2% !important;
-}
-
-#change-network-button {
-    padding-bottom: 5% !important;
-    padding-top: 2% !important;
-}*/
 
 .abutton {
     padding-bottom: 15% !important;
@@ -798,19 +793,6 @@ a.pure-menu-link {
 .dbg-log#clear-console-button, .dbg-log#log-reset-button  {
     margin-left: 5% !important;
 }
-
-/*#enable-status-report {
-    margin-top: 16px;
-}
-
-form#specform {
-    margin-top: 16px;
-}*/
-
-/*@font-face {
-    font-family: TyponineSansLight;
-    src: url("/fonts/TyponineSans-Light.otf");
-}*/
 
 @font-face {
     font-family: TyponineSansMonoMedium;

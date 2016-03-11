@@ -1,3 +1,3 @@
 cd /esptool
 
-python ./esptool.py -p /dev/ttyACMx -b 9600 write_flash -ff 80m -fm qio -fs 32m 0x00000 ../ESP8266/ReleaseRC1/boot_v1.4.bin 0x1000 ../ESP8266/ReleaseRC1/user1.bin 0x3FC000 ../ESP8266/ReleaseRC1/esp_init_data_UNOWIFI.bin 0x3FE000 ../ESP8266/ReleaseRC1/blank.bin
+python ./esptool.py -p /dev/ttyACMx -b 9600 write_flash -ff 80m -fm qio -fs 32m 0x00000 ../ESP8266/FirstBurn/boot_v1.4.bin 0x1000 ../ESP8266/firmware/user1.bin 0x3FC000 ../ESP8266/FirstBurn/esp_init_data_UNOWIFI.bin 0x3FE000 ../ESP8266/FirstBurn/blank.bin

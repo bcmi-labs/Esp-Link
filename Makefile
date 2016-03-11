@@ -36,7 +36,7 @@ SDK_BASE	?= $(abspath ../esp_iot_sdk_v1.5.0)
 # Typically you'll use https://github.com/themadinventor/esptool
 # Windows users use the com port i.e: ESPPORT ?= com3
 ESPTOOL		?= $(abspath ../esptool/esptool.py)
-ESPPORT		?= /dev/ttyACM0
+ESPPORT		?= /dev/ttyACM2
 ESPBAUD		?= 9600
 
 # The Wifi station configuration can be hard-coded here, which makes esp-link come up in STA+AP
@@ -46,7 +46,7 @@ ESPBAUD		?= 9600
 # STA_PASS ?= 
 
 # hostname or IP address for wifi flashing
-ESP_HOSTNAME        ?= uno-wifi
+ESP_HOSTNAME        ?= arduino
 
 # --------------- chipset configuration   ---------------
 
@@ -158,12 +158,10 @@ endif
 # Steps to release: create release on github, git pull, git describe --tags to verify you're
 # on the release tag, make release, upload esp-link.tgz into the release files
 #VERSION ?= "esp-link custom version"
-DATE    := $(shell date '+%F %T')
-BRANCH  ?= $(shell if git diff --quiet HEAD; then git describe --tags; \
-                   else git symbolic-ref --short HEAD; fi)
-SHA     := $(shell if git diff --quiet HEAD; then git rev-parse --short HEAD | cut -d"/" -f 3; \
-                   else echo "development"; fi)
-VERSION ?=esp-link $(BRANCH) - $(DATE) - $(SHA)
+DATE    := $(shell date '+%F')
+BRANCH  ?= $(shell git rev-parse --abbrev-ref HEAD)
+SHA     := $(shell git log --pretty=format:'%h' -n 1)
+VERSION ?=Firmware Release: $(BRANCH) - $(DATE) - $(SHA)
 
 # Output directors to store intermediate compiled files
 BUILD_BASE	= build

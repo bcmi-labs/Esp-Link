@@ -71,6 +71,10 @@ v=; [[ -n "$verbose" ]] && v=-v
 sync=`curl -m 10 $v -s -w '%{http_code}' -XPOST "http://$hostname/pgm/sync"`
 if [[ $? != 0 || "$sync" != 204 ]]; then
   echo "Error resetting AVR" >&2
+  echo "ESP is restarting, please wait"
+  curl -m 10 -s "http://$hostname/log/reset"
+  sleep 2
+  echo "Restart done ! Please try again. Thank you"
   exit 1
 fi
 
@@ -78,6 +82,10 @@ while true; do
   sync=`curl -m 10 $v -s "http://$hostname/pgm/sync"`
   if [[ $? != 0 ]]; then
     echo "Error checking sync" >&2
+    echo "ESP is restarting, please wait"
+    curl -m 10 -s "http://$hostname/log/reset"
+    sleep 2
+    echo "Restart done ! Please try again. Thank you"
     exit 1
   fi
   case "$sync" in
@@ -89,6 +97,10 @@ while true; do
     ;;
   *)
     echo "Error checking sync: $sync" >&2
+    echo "ESP is restarting, please wait"
+    curl -m 10 -s "http://$hostname/log/reset"
+    sleep 2
+    echo "Restart done ! Please try again. Thank you"
     exit 1
     ;;
   esac
@@ -102,6 +114,10 @@ sync=`curl -m 10 $v -s -g -d "@$hex" "http://$hostname/pgm/upload"`
 echo $sync
 if [[ $? != 0 || ! "$sync" =~ ^Success ]]; then
   echo "Error programming AVR" >&2
+  echo "ESP is restarting, please wait"
+  curl -m 10 -s "http://$hostname/log/reset"
+  sleep 2
+  echo "Restart done ! Please try again. Thank you"
   exit 1
 fi
 

@@ -105,6 +105,10 @@ done
 res=`curl $silent -XPOST --data-binary "@$fw" "http://$hostname/flash/upload"`
 if [[ $? != 0 ]]; then
 	echo "Error flashing $fw" >&2
+	echo "ESP is restarting, please wait"
+	curl -m 10 -s "http://$hostname/log/reset"
+	sleep 2
+	echo "Restart done ! Please try again. Thank you"
 	exit 1
 fi
 
@@ -126,6 +130,10 @@ while true; do
 			exit 0
 		else
 			echo "Flashing seems to have failed and it reverted to the old firmware?" >&2
+			echo "ESP is restarting, please wait"
+			curl -m 10 -s "http://$hostname/log/reset"
+			sleep 2
+			echo "Restart done ! Please try again. Thank you"
 			exit 1
 		fi
 	fi
