@@ -22,10 +22,26 @@ Example: ${0##*/} -v esp-link mysketch.hex
 EOT
 }
 
-if ! which curl >/dev/null; then
-  echo "ERROR: Cannot find curl: it is required for this script." >&2
-  exit 1
-fi
+case "$OSTYPE" in
+  solaris* | darwin* | linux* | bsd*)
+        if ! which curl >/dev/null; then
+            echo "ERROR: Cannot find curl: it is required for this script." >&2
+            exit 1
+        fi
+        ;;
+    msys | cygwin)
+        if [ ! -e $PWD/bin/curl ]; then
+            echo "ERROR: Cannot find curl: it is required for this script." >&2
+            exit 1
+        fi
+        ;;
+    *)
+        echo ""
+        echo "Your system is not supported....aborting !"
+        echo ""
+        exit 0
+        ;;
+esac
 
 start=`date +%s`
 
