@@ -433,12 +433,12 @@ pre.console a {
 
 .menu-link {
   position: fixed;
-  display: block; 
+  display: block;
   top: 0;
-  left: 0; 
+  left: 0;
   background: #000;
   background: rgba(0,0,0,0.7);
-  font-size: 10px; 
+  font-size: 10px;
   z-index: 10;
   width: 2em;
   height: auto;
@@ -482,11 +482,11 @@ pre.console a {
     padding-left: 150px;
     left: 0;
   }
-    
+
   #menu {
     left: 150px;
   }
-    
+
   .menu-link {
     position: fixed;
     left: 150px;
@@ -584,7 +584,7 @@ pre.console a {
     text-align: center;
     padding: 0 5%;
     font-family: TyponineSansMonoText;
-    
+
     position: relative;
     margin-bottom: 0;
     margin-top: 80%;
@@ -627,7 +627,7 @@ td.td_key {
     /*width: 10vw;
     height: 3.5vh;*/
     width: 100% !important;
-    
+
     float: left;
 }
 
@@ -646,7 +646,7 @@ td.td_key {
 
 .td_header {
     background-color: #e6e7e8 !important;
-    
+
 }
 
 span.jl {
@@ -723,7 +723,7 @@ a.pure-button.button-primary {
 }
 
 td.td_header {
-    padding-left: 0px; 
+    padding-left: 0px;
 }
 
 .td_header h1 {
@@ -792,6 +792,19 @@ a.pure-menu-link {
 
 .dbg-log#clear-console-button, .dbg-log#log-reset-button  {
     margin-left: 5% !important;
+}
+
+#alertWiFiMode {
+    display:none;
+    /*border:1px solid #000;
+    width:400px;
+    height:400px;*/
+    position: absolute;
+    background-color: #F00;
+    color: #FFF;
+    border-radius: 5px;
+    max-width: 30%;
+    padding: 0.1em 0.4em;
 }
 
 @font-face {

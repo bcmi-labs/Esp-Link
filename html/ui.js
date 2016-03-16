@@ -18,6 +18,9 @@ var bnd = function(
   d.addEventListener(e, f, false);
 }
 
+var ubnd = function(
+  d, e, f){ d.removeEventListener(e, f, false) }
+
 /*
  * Create DOM element
  *
@@ -229,7 +232,7 @@ onLoad(function() {
   // menu hamburger button
   l.insertBefore(m('<a href="#menu" id="menuLink" class="menu-link"><span></span></a>'), o);
   // menu left-pane
-    
+
   var mm = m(
    '<div id="menu">\
       <div class="pure-menu">\
@@ -254,7 +257,7 @@ onLoad(function() {
       toggleClass(l, active);
       toggleClass(mm, active);
       toggleClass(ml, active);
-      
+
       setTimeout(closeMenu, 10000);
   });
 
@@ -279,7 +282,7 @@ onLoad(function() {
                 (path === href ? " pure-menu-selected" : "") + "\">" +
                 "<a href=\"" + href + "\" class=\"pure-menu-link\">" +
                 data.menu[i] + "</a></li>");
-          
+
       }
       $("#menu-list").innerHTML = html;
       $("#menu-list-settings").innerHTML = htmlsettings;
@@ -289,13 +292,13 @@ onLoad(function() {
     }, function() { setTimeout(getMenu, 1000); });
   };
   getMenu();
-    
+
   bnd($('#main'), 'click', function(){closeMenu()});
-  
+
    var closeMenu = function (){
     removeClass(l, "active");
     removeClass(mm, "active");
-    removeClass(ml, "active"); 
+    removeClass(ml, "active");
 }
 });
 
@@ -314,7 +317,7 @@ function showWifiInfo(data) {
   var dhcp = $('#dhcp-r'+data.dhcp);
   if (dhcp) dhcp.click();
   var ws = $("#wifi-spinner");
-  if(ws != null)    
+  if(ws != null)
     ws.setAttribute("hidden", "");
   $("#wifi-table").removeAttribute("hidden");
   var chi = $("#change-hostname-input")
@@ -527,5 +530,5 @@ function changeToWifiPage(ev) {
 function showConfigWiFiMessage(){
     alert("Please connect to an existing wifi to enable this function.")
 }
-    
+
 ajaxJson('GET', "/wifi/info", function(data) { document.title += " - "+data['hostname'] });

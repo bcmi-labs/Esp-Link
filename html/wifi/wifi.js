@@ -68,6 +68,7 @@ function scanResult() {
           $("#aps").appendChild(createInputForAp(data.result.APs[i]));
           n = n+1;
         }
+        enableNetworkSelection();
         showNotification("Scan found " + n + " networks");
         var cb = $("#connect-button");
         cb.className = cb.className.replace(" pure-button-disabled", "");
@@ -138,10 +139,12 @@ function changeWifiMode(m) {
     showNotification("Mode changed");
     window.setTimeout(getWifiInfo, 100);
     blockScan = 0;
+    enableNetworkSelection();
   }, function(s, st) {
     showWarning("Error changing mode: " + st);
     window.setTimeout(getWifiInfo, 100);
     blockScan = 0;
+    enableNetworkSelection();
   });
 }
 
@@ -197,8 +200,21 @@ function changeHostname(){
     if (h == "")
         alert ("Insert hostname!")
     else{
-        ajaxSpin("POST", "/system/update?name="+h, function() {alert("Hostname changed in : " + h)});
-        document.title += "-"+h;
+        ajaxSpin("POST", "/system/update?name="+h, function() { showHostnameModal(h); });
+    }
+}
+
+function showHostnameModal(hostname){
+    var txt = "Hostname changed in : " + hostname + "\nYour board will be reboot to apply change";
+    var res = confirm(txt);
+    if(res == true){
+      ajaxSpin('POST', "/log/reset",
+        function (resp) { showNotification("Resetting esp-link"); document.title = "UNO WiFi - " + hostname;},
+        function (s, st) { showWarning("Error resetting esp-link"); }
+      );
+    }
+    else {
+      alert("Reboot your board manually to apply change")
     }
 }
 
@@ -209,6 +225,41 @@ function hostnameLimitations(keyEvent){
        keyEvent.preventDefault();
        return false;
     }
+}
+
+function enableNetworkSelection(){
+  ajaxJson('GET', "/wifi/info", function(data) {
+    var b = (data['mode'] == "STA") ;
+
+    var wifiform = document.getElementById('wifiform'),
+    items = wifiform.getElementsByTagName('input'),
+    btn = $("#connect-button");
+
+    var inp, i=0;
+    while(inp=items[i++]) {
+      inp.disabled = b;
+    }
+    btn.disabled = b;
+
+    if(b){
+      bnd(wifiform, "mouseover", displayWiFiModeAlert);
+      bnd(wifiform, "mouseout", hideWiFiModeAlert);
+    }
+    else {
+      ubnd(wifiform, "mouseover", displayWiFiModeAlert);
+      ubnd(wifiform, "mouseout", hideWiFiModeAlert);
+    }
+  });
+}
+
+function displayWiFiModeAlert()
+{
+  $("#alertWiFiMode").style.display = "inherit";
+}
+
+function hideWiFiModeAlert()
+{
+  $("#alertWiFiMode").style.display = "none";
 }
 
 function doDhcp() {

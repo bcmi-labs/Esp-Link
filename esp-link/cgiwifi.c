@@ -308,7 +308,7 @@ static void ICACHE_FLASH_ATTR resetTimerCb(void *arg) {
     // no more resetTimer at this point, gotta use physical reset to recover if in trouble
   } else {
     if (m != 3) {
-      DBG("Wifi connect failed. Going into STA+AP mode..\n");
+      DBG("Wifi connect failed. Going into AP+STA mode..\n");
       wifi_set_opmode(3);
     }
     log_uart(true);
@@ -517,8 +517,8 @@ static char *connStatuses[] = { "idle", "connecting", "wrong password", "AP not 
                          "failed", "got IP address" };
 
 static char *wifiWarn[] = { 0,
-  "<a href=\\\"#\\\" class=\\\"pure-button button-primary button-larger-margin\\\" onclick=\\\"changeWifiMode(3)\\\">Switch to STA+AP mode</a>",
-  "<a href=\\\"#\\\" class=\\\"pure-button button-primary button-larger-margin\\\" onclick=\\\"changeWifiMode(3)\\\"><b>Can't scan in this mode!</b> Switch to STA+AP mode</a>",
+  "<a href=\\\"#\\\" class=\\\"pure-button button-primary button-larger-margin\\\" onclick=\\\"changeWifiMode(3)\\\">Switch to AP+STA mode</a>",
+  "<a href=\\\"#\\\" class=\\\"pure-button button-primary button-larger-margin\\\" onclick=\\\"changeWifiMode(3)\\\"><b>Can't scan in this mode!</b> Switch to AP+STA mode</a>",
   "<a href=\\\"#\\\" class=\\\"pure-button button-primary button-larger-margin\\\" onclick=\\\"changeWifiMode(1)\\\">Switch to STA mode</a>",
 };
 
