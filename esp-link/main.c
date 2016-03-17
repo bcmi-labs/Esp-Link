@@ -83,6 +83,9 @@ HttpdBuiltInUrl builtInUrls[] = {
   { "/arduino/analog/", cgiArduino, NULL },
   { "/arduino/digital/", cgiArduino, NULL },
   { "/arduino/mode/", cgiArduino, NULL },
+  { "/arduino/ciao/", cgiArduino, NULL },
+  { "/arduino/servo/", cgiArduino, NULL },
+  { "/arduino/custom/", cgiArduino, NULL },
   { "/arduino/webserver/", cgiWebserver, NULL },
 #ifdef MQTT
   { "/mqtt", cgiMqtt, NULL },
