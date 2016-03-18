@@ -139,12 +139,13 @@ function changeWifiMode(m) {
     showNotification("Mode changed");
     window.setTimeout(getWifiInfo, 100);
     blockScan = 0;
-    enableNetworkSelection();
+    window.setTimeout(enableNetworkSelection, 500);
   }, function(s, st) {
     showWarning("Error changing mode: " + st);
     window.setTimeout(getWifiInfo, 100);
     blockScan = 0;
-    enableNetworkSelection();
+    //enableNetworkSelection();
+    window.setTimeout(enableNetworkSelection, 500);
   });
 }
 
