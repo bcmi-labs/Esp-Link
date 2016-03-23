@@ -1,15 +1,16 @@
-ESP-LINK
+ESP-LINK Arduino
 ========
 
-This firmware connects an attached micro-controller to the internet using a ESP8266 Wifi module.
+This firmware connects an attached Arduino micro-controller to the internet using a ESP8266 Wifi module.
 It implements a number of features:
 - transparent bridge between Wifi and serial, useful for debugging or inputting into a uC
 - flash-programming attached Arduino/AVR microcontrollers, esp8266 modules, as well as
-  LPC800-series and other ARM microcontrollers via Wifi
+  LPC800-series and other ARM microcontrollers via Wifi.
 - built-in stk500v1 programmer for AVR uC's with optiboot: program using HTTP upload of hex file
 - outbound TCP (and thus HTTP) connections from the attached micro-controller to the internet
 - outbound REST HTTP requests from the attached micro-controller to the internet, protocol
-  based on espduino and compatible with [tuanpmt/espduino](https://github.com/tuanpmt/espduino)
+  based on espduino and compatible with [tuanpmt/espduino](https://github.com/tuanpmt/espduino) 
+  and [arduino-org/Ciao](https://github.com/arduino-org/Ciao) Arduino libraries.
 
 The firmware includes a tiny HTTP server based on
 [esphttpd](http://www.esp8266.com/viewforum.php?f=34)
@@ -19,15 +20,10 @@ Many thanks to https://github.com/brunnels for contributions in particular aroun
 functionality. Thank you also to https://github.com/susisstrolch and https://github.com/bc547 for
 additional contributions!
 
-###[Releases & Downloads](https://github.com/jeelabs/esp-link/releases)
+###[Releases & Downloads](https://github.com/arduino-org/Esp-Link/releases)
 
-- [V2.1.7](https://github.com/jeelabs/esp-link/releases/tag/v2.1.7) is the most recent release.
-  It has the new built-in stk500v1 programmer and works on all modules (esp-01 through esp-12).
-- [V2.2.beta1](https://github.com/jeelabs/esp-link/releases/tag/v2.2.beta1) will be coming
-  up shortly with mDNS, sNTP, and syslog support, stay tuned...
-
-For quick support and questions:
-[![Chat at https://gitter.im/jeelabs/esp-link](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jeelabs/esp-link?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+- [Vx.x.x](https://github.com/arduino-org/Esp-Link/releases/last) is the most recent release.
+  It has the new UX and the last arduino features.
 
 Esp-link uses
 -------------
@@ -56,49 +52,21 @@ Eye Candy
 These screen shots show the Home page, the Wifi configuration page, the console for the
 attached microcontroller, and the pin assignments card:
 
-<img width="45%" src="https://cloud.githubusercontent.com/assets/39480/8261425/6ca395a6-167f-11e5-8e92-77150371135a.png">
-<img width="45%" src="https://cloud.githubusercontent.com/assets/39480/8261427/6caf7326-167f-11e5-8085-bc8b20159b2b.png">
-<img width="45%" src="https://cloud.githubusercontent.com/assets/39480/8261426/6ca7f75e-167f-11e5-827d-9a1c582ad05d.png">
-<img width="30%" src="https://cloud.githubusercontent.com/assets/39480/8261658/11e6c64a-1681-11e5-82d0-ea5ec90a6ddb.png">
+<img width="100%" src="http://labs.arduino.org/dl1570?display">
+<img width="100%" src="http://labs.arduino.org/dl1572?display">
+<img width="100%" src="http://labs.arduino.org/dl1574?display">
+<img width="100%" src="http://labs.arduino.org/dl1579?display">
 
 Hardware info
 -------------
-This firmware is designed for any esp8266 module.
-The recommended connections for an esp-01 module are:
-- URXD: connect to TX of microcontroller
-- UTXD: connect to RX of microcontroller
-- GPIO0: connect to RESET of microcontroller
-- GPIO2: optionally connect green LED to 3.3V (indicates wifi status)
-
-The recommended connections for an esp-12 module are:
-- URXD: connect to TX of microcontroller
-- UTXD: connect to RX of microcontroller
-- GPIO12: connect to RESET of microcontroller
-- GPIO13: connect to ISP of LPC/ARM microcontroller or to GPIO0 of esp8266 being programmed
-  (not used with Arduino/AVR)
-- GPIO0: optionally connect green "conn" LED to 3.3V (indicates wifi status)
-- GPIO2: optionally connect yellow "ser" LED to 3.3V (indicates serial activity)
-
-If your application has problems with the boot message that is output at ~74600 baud by the ROM
-at boot time you can connect an esp-12 module as follows and choose the "swap_uart" pin assignment
-in the esp-link web interface:
-- GPIO13: connect to TX of microcontroller
-- GPIO15: connect to RX of microcontroller
-- GPIO1/UTXD: connect to RESET of microcontroller
-- GPIO3/URXD: connect to ISP of LPC/ARM microcontroller or to GPIO0 of esp8266 being programmed
-  (not used with Arduino/AVR)
-- GPIO0: optionally connect green "conn" LED to 3.3V (indicates wifi status)
-- GPIO2: optionally connect yellow "ser" LED to 3.3V (indicates serial activity)
-
-If you are using an FTDI connector, GPIO12 goes to DTR and GPIO13 goes to CTS (or vice-versa, I've
-seen both used, sigh).
-
-The GPIO pin assignments can be changed dynamically in the web UI and are saved in flash.
+This firmware is designed for any Arduino R3 board with AVR microcontroller and ESP8266 chip.
+But now is compatible only new Arduino UNO WiFi.
+Technical Detail of Arduino UNO WiFi : link
 
 Initial flashing
 ----------------
 If you want to simply flash a pre-built firmware binary, you can download the latest
-[release](https://github.com/jeelabs/esp-link/releases) and use your favorite
+[release](https://github.com/arduino-org/Esp-Link/releases) and use your favorite
 ESP8266 flashing tool to flash the bootloader, the firmware, and blank settings.
 Detailed instructions are provided in the release notes.
 
@@ -113,11 +81,10 @@ For proper operation the end state that esp-link needs to arrive at is to have i
 join your pre-existing wifi network as a pure station.
 However, in order to get there esp-link will start out as an access point and you'll have
 to join its network to configure it. The short version is:
- 1. esp-link creates a wifi access point with an SSID of the form `ESP_012ABC` (some modules
-    use a different SSID form, such as `ai-thinker-012ABC`)
+ 1. esp-link creates a wifi access point with an SSID of the form `Arduino-<boardname>-<last6MACaddress>`
  2. you join your laptop or phone to esp-link's network as a station and you configure
-    esp-link wifi with your network info by pointing your browser at http://192.168.4.1/
- 3. you set a hostname for esp-link on the "home" page, or leave the default ("esp-link")
+    esp-link wifi with your network info by pointing your browser at http://192.168.240.1/
+ 3. you set a hostname for esp-link on the "home" page, or leave the default ("arduino")
  4. esp-link starts to connect to your network while continuing to also be an access point
     ("AP+STA"), the esp-link may show up with a `${hostname}.local` hostname
     (depends on your DHCP/DNS config)
@@ -127,7 +94,7 @@ to join its network to configure it. The short version is:
 
 LED indicators
 --------------
-Assuming appropriate hardware attached to GPIO pins, the green "conn" LED will show the wifi
+Assuming you use Arduino UNO WiFi, the green "WIFI" LED will show the wifi
 status as follows:
 - Very short flash once a second: not connected to a network and running as AP+STA, i.e.
   trying to connect to the configured network
@@ -136,14 +103,12 @@ status as follows:
 - Steady on with very short off every 3 seconds: connected to the configured network with an
   IP address (esp-link shuts down its AP after 60 seconds)
 
-The yellow "ser" LED will blink briefly every time serial data is sent or received by the esp-link.
-
 Wifi configuration details
 --------------------------
 After you have serially flashed the module it will create a wifi access point (AP) with an
-SSID of the form `ESP_012ABC` where 012ABC is a piece of the module's MAC address.
+SSID of the form `Arduino-<boardname>-<last6MACaddress>` where <last6MACaddress> is a piece of the module's MAC address.
 Using a laptop, phone, or tablet connect to this SSID and then open a browser pointed at
-http://192.168.4.1/, you should then see the esp-link web site.
+http://192.168.240.1/, you should then see the esp-link web site.
 
 Now configure the wifi. The desired configuration is for the esp-link to be a
 station on your local wifi network so you can communicate with it from all your computers.
@@ -156,7 +121,7 @@ Enter a password if your network is secure (highly recommended...) and hit the c
 You should now see that the esp-link has connected to your network and it should show you
 its IP address. _Write it down_. You will then have to switch your laptop, phone, or tablet
 back to your network and then you can connect to the esp-link's IP address or, depending on your
-network's DHCP/DNS config you may be able to go to http://esp-link.local
+network's DHCP/DNS config you may be able to go to http://arduino.local
 
 At this point the esp-link will have switched to STA mode and be just a station on your
 wifi network. These settings are stored in flash and thereby remembered through resets and
@@ -165,7 +130,8 @@ via the serial port as indicated above will reset the wifi settings.
 
 There is a fail-safe, which is that after a reset or a configuration change, if the esp-link
 cannot connect to your network it will revert back to AP+STA mode after 15 seconds and thus
-both present its `ESP_012ABC`-style network and continue trying to reconnect to the requested network.
+both present its `Arduino-<boardname>-<last6MACaddress>`-style network and continue trying to reconnect
+to the requested network.
 You can then connect to the esp-link's AP and reconfigure the station part.
 
 One open issue (#28) is that esp-link cannot always display the IP address it is getting to the browser
@@ -175,8 +141,8 @@ to also switch to channel 6 disconnecting you in the meantime.
 
 Hostname, description, DHCP, mDNS
 ---------------------------------
-You can set a hostname on the "home" page, this should be just the hostname and not a domain
-name, i.e., something like "test-module-1" and not "test-module-1.mydomain.com".
+You can set a hostname on the "WIFI" page, this should be just the hostname and not a domain
+name, i.e., something like "test1" and not "test1.mydomain.com".
 This has a number of effects:
 - you will see the first 12 chars of the hostname in the menu bar (top left of the page) so
   if you have multiple modules you can distinguish them visually
@@ -185,12 +151,7 @@ This has a number of effects:
   servers will inject these names into the local DNS cache so you can use URLs like
   `hostname.local`.
 - someday, esp-link will inject the hostname into mDNS (multicast DNS, bonjour, etc...) so 
-  URLs of the form `hostname.local` work for everyone (as of v2.1.beta5 mDNS is disabled due
-  to reliability issues with it)
-
-You can also enter a description of up to 128 characters on the home page (bottom right). This
-allows you to leave a memo for yourself, such as "installed in basement to control the heating
-system". This descritpion is not used anywhere else.
+  URLs of the form `hostname.local` work for everyone.
 
 Troubleshooting
 ---------------
@@ -207,7 +168,7 @@ Troubleshooting
   connect to your network within 15-20 seconds
 - if the LED says that esp-link is on your network but you can't get to it, make sure your
   laptop is on the same network (and no longer on the esp's network)
-- if you do not know the esp-link's IP address on your network, try `esp-link.local`, try to find
+- if you do not know the esp-link's IP address on your network, try `arduino.local`, try to find
   the lease in your DHCP server; if all fails, you may have to turn off your access point (or walk
   far enough away) and reset/power-cycle esp-link, it will then fail to connect and start its
   own AP after 15-20 seconds
@@ -269,6 +230,7 @@ from beginning to end. If you need to clear the wifi settings you need to reflas
 using the serial port.
 
 The flash configuration and the OTA upgrade process is described in more detail in [FLASH.md](FLASH.md)
+You can use ArduinoIDE for ESP8266 OTA, instruction on this link: ...
 
 Serial bridge and connections to Arduino, AVR, ARM, LPC microcontrollers
 ------------------------------------------------------------------------
@@ -290,8 +252,8 @@ There are three options for reprogramming an attached AVR/Arduino microcontrolle
   programmer, which only works for AVRs/Arduinos with the optiboot bootloader (which is std).
 
 To reprogram an Arduino / AVR microcontroller by pointing avrdude at port 23 or 2323 you
-specify a serial port of the form `net:esp-link:23` in avrdude's -P option, where
-`esp-link` is either the hostname of your esp-link or its IP address).
+specify a serial port of the form `net:arduino:23` in avrdude's -P option, where
+`arduino` is either the hostname of your esp-link or its IP address).
 This is instead of specifying a serial port of the form /dev/ttyUSB0.
 Esp-link detects that avrdude starts its connection with a flash synchronization sequence
 and sends a reset to the AVR microcontroller so it can switch into flash programming mode.
@@ -306,12 +268,6 @@ details or use that script directly (`./avrflash esp-link.local my_sketch.hex`).
 _Important_: after the initial sync request that resets the AVR you have 10 seconds to get to the
 upload post or esp-link will time-out. So if you're manually entering curl commands have them
 prepared so you can copy&paste!
-
-Beware of the baud rate, which you can set on the uC Console page. Sometimes you may be using
-115200 baud in sketches but the bootloader may use 57600 baud. When you use port 23 or 2323 you
-need to set the baud rate correctly. If you use the built-in programmer (HTTP POST method) then
-esp-link will try the configured baud rate and also 9600, 57600, and 115200 baud, so it should
-work even if you have the wrong baud rate configured...
 
 When to use which method? If port 23 works then go with that. If you have trouble getting sync
 or it craps out in the middle too often then try the built-in programmer with the HTTP POST.
@@ -347,6 +303,10 @@ The efficiency is not 100% because there is protocol overhead (such as sync, rec
 length characters)
 and there is dead time waiting for an ack or preparing the next record to be sent.
 
+In general, you can use ArduinoIDE for upgrade new sketch on AVR microcontroller.
+Here the instruction: http://labs.arduino.org/First+sketch+using+an+Arduino+UNO+WiFi#Upload_sketch 
+
+
 ### Flashing an attached ARM processor
 
 You can reprogram NXP's LPC800-series and many other ARM processors as well by pointing your
@@ -369,7 +329,7 @@ gpio0 pins to be toggled such that the chip enters the flash programming mode.
 One option for connecting the programmer with esp-link is to use my version of esptool.py
 at http://github.com/tve/esptool, which supports specifying a URL instead of a port. Thus
 instead of specifying something like `--port /dev/ttyUSB0` or `--port COM1` you specify
-`--port socket://esp-link.local:2323`. Important: the baud rate specified on the esptool.py
+`--port socket://arduino.local:2323`. Important: the baud rate specified on the esptool.py
 command-line is irrelevant as the baud rate used by esp-link will be the one set in the
 uC console page. Fortunately the esp8266 bootloader does auto-baud detection. (Setting the
 baud rate to 115200 is recommended.)
@@ -402,8 +362,6 @@ modes are supported that can be set in the web UI (and the mode is saved in flas
 - auto: the UART log starts enabled at boot using uart0 and disables itself when esp-link
   associates with an AP. It re-enables itself if the association is lost.
 - off: the UART log is always off
-- on0: the UART log is always on using uart0
-- on1: the UART log is always on using uart1 (gpio2 pin)
 
 Note that even if the UART log is always off the ROM prints to uart0 whenever the
 esp8266 comes out of reset. This cannot be disabled.
@@ -423,9 +381,17 @@ You can find a demo sketch in a fork of the espduino library at
 https://github.com/tve/espduino in the
 [examples/demo folder](https://github.com/tve/espduino/tree/master/espduino/examples/demo).
 
+Arduino Ciao is implemented.
+
 More docs forthcoming...
 
 Contact
 -------
 If you find problems with esp-link, please create a github issue. If you have a question, please
 use the gitter chat link at the top of this page.
+
+Thnaks
+-------
+Special thanks to Thorsten Von Eicken and JeeLabs who created this repository. 
+Thanks to them was possibilile the birth of the Arduino UNO WiFi project.
+
