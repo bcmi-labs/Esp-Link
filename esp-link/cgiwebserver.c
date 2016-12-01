@@ -22,7 +22,7 @@ int ICACHE_FLASH_ATTR cgiArduinoWebGet(HttpdConnData *connData) { // IMP: 480 ch
   char buff[1024];
   int len = 0;
   char tmp[81];
-	
+
 	UART_FORCE = 1;
 
 	while(ready != 1){
@@ -32,13 +32,13 @@ int ICACHE_FLASH_ATTR cgiArduinoWebGet(HttpdConnData *connData) { // IMP: 480 ch
 		ready = 0;
 		for(int i=0; i<80; i++) buff_console[i] = '\0' ;
 
-for(int j=0; j < 5; j++){
+for(int j=0; j < 11; j++){
 	while(ready != 1){
 	}
 		len = len + os_sprintf(tmp,"%s", buff_console);
 		os_strcat(buff, tmp);
 		ready = 0;
-		for(int i=0; i<80; i++){ if(buff_console[i] == '~') j=5;  buff_console[i] = '\0' ; }
+		for(int i=0; i<80; i++){ if(buff_console[i] == '~') j=11;  buff_console[i] = '\0' ; }
 }
 /*
 	while(ready != 1){
