@@ -63,7 +63,7 @@ sint8 espconn_secure_sent(struct espconn *espconn, uint8 *psent, uint16 length) 
 // max message size supported for receive
 #define MQTT_MAX_RCV_MESSAGE 2048
 // max message size for sending (except publish)
-#define MQTT_MAX_SHORT_MESSAGE 128
+#define MQTT_MAX_SHORT_MESSAGE 192
 
 #ifdef MQTT_DBG
 static char* mqtt_msg_type[] = {
