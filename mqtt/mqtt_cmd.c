@@ -92,14 +92,14 @@ MQTTCMD_Lwt(CmdPacket *cmd) {
 
   // get topic
   len = CMD_ArgLen(&req);
-  if (len > 128) return 0; // safety check
+  if (len > 192) return 0; // safety check
   client->connect_info.will_topic = (char*)os_zalloc(len + 1);
   CMD_PopArg(&req, client->connect_info.will_topic, len);
   client->connect_info.will_topic[len] = 0;
 
   // get message
   len = CMD_ArgLen(&req);
-  if (len > 128) return 0; // safety check
+  if (len > 192) return 0; // safety check
   client->connect_info.will_message = (char*)os_zalloc(len + 1);
   CMD_PopArg(&req, client->connect_info.will_message, len);
   client->connect_info.will_message[len] = 0;
@@ -143,7 +143,7 @@ MQTTCMD_Publish(CmdPacket *cmd) {
 
   // get topic
   len = CMD_ArgLen(&req);
-  if (len > 128) return 0; // safety check
+  if (len > 192) return 0; // safety check
   uint8_t *topic = (uint8_t*)os_zalloc(len + 1);
   CMD_PopArg(&req, topic, len);
   topic[len] = 0;
@@ -204,7 +204,7 @@ MQTTCMD_Subscribe(CmdPacket *cmd) {
 
   // get topic
   len = CMD_ArgLen(&req);
-  if (len > 128) return 0; // safety check
+  if (len > 192) return 0; // safety check
   uint8_t* topic = (uint8_t*)os_zalloc(len + 1);
   CMD_PopArg(&req, topic, len);
   topic[len] = 0;
@@ -340,7 +340,7 @@ MQTTCMD_Connect(CmdPacket *cmd) {
   if (client->host)
   os_free(client->host);
   len = CMD_ArgLen(&req);
-  if (len > 128) return 0; // safety check
+  if (len > 192) return 0; // safety check
   client->host = (char*)os_zalloc(len + 1);
   CMD_PopArg(&req, client->host, len);
   client->host[len] = 0;
