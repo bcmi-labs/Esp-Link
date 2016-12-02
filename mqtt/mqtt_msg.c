@@ -104,10 +104,10 @@ static mqtt_message_t* ICACHE_FLASH_ATTR
 fini_message(mqtt_connection_t* connection, int type, int dup, int qos, int retain) {
   int remaining_length = connection->message.length - MQTT_MAX_FIXED_HEADER_SIZE;
 
-  if (remaining_length > 191) {
+  if (remaining_length > 127) {
     connection->buffer[0] = ((type & 0x0f) << 4) | ((dup & 1) << 3) | ((qos & 3) << 1) | (retain & 1);
-    connection->buffer[1] = 0xc0 | (remaining_length % 191);
-    connection->buffer[2] = remaining_length / 192;
+    connection->buffer[1] = 0x80 | (remaining_length % 128);
+    connection->buffer[2] = remaining_length / 128;
     connection->message.length = remaining_length + 3;
     connection->message.data = connection->buffer;
   }
@@ -135,8 +135,8 @@ mqtt_get_total_length(const uint8_t* buffer, uint16_t length) {
   int totlen = 0;
 
   for (i = 1; i < length; ++i) {
-    totlen += (buffer[i] & 0xbf) << (7 * (i - 1));
-    if ((buffer[i] & 0xc0) == 0) {
+    totlen += (buffer[i] & 0x7f) << (7 * (i - 1));
+    if ((buffer[i] & 0x80) == 0) {
       ++i;
       break;
     }
@@ -153,8 +153,8 @@ mqtt_get_publish_topic(const uint8_t* buffer, uint16_t* length) {
   int topiclen;
 
   for (i = 1; i < *length; ++i) {
-    totlen += (buffer[i] & 0xbf) << (7 * (i - 1));
-    if ((buffer[i] & 0xC0) == 0) {
+    totlen += (buffer[i] & 0x7f) << (7 * (i - 1));
+    if ((buffer[i] & 0x80) == 0) {
       ++i;
       break;
     }
@@ -180,8 +180,8 @@ mqtt_get_publish_data(const uint8_t* buffer, uint16_t* length) {
   int topiclen;
 
   for (i = 1; i < *length; ++i) {
-    totlen += (buffer[i] & 0xbf) << (7 * (i - 1));
-    if ((buffer[i] & 0xc0) == 0) {
+    totlen += (buffer[i] & 0x7f) << (7 * (i - 1));
+    if ((buffer[i] & 0x80) == 0) {
       ++i;
       break;
     }
@@ -226,7 +226,7 @@ mqtt_get_id(const uint8_t* buffer, uint16_t length) {
       int topiclen;
 
       for (i = 1; i < length; ++i) {
-        if ((buffer[i] & 0xc0) == 0) {
+        if ((buffer[i] & 0x80) == 0) {
           ++i;
           break;
         }
@@ -261,7 +261,7 @@ mqtt_get_id(const uint8_t* buffer, uint16_t length) {
     case MQTT_MSG_TYPE_SUBSCRIBE: {
       // This requires the remaining length to be encoded in 1 byte,
       // which it should be.
-      if (length >= 4 && (buffer[1] & 0xc0) == 0)
+      if (length >= 4 && (buffer[1] & 0x80) == 0)
         return (buffer[2] << 8) | buffer[3];
       else
         return 0;
