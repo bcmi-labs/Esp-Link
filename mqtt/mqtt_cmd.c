@@ -248,21 +248,21 @@ MQTTCMD_Setup(CmdPacket *cmd) {
 
   // get client id
   len = CMD_ArgLen(&req);
-  if (len > 48) return 0; // safety check
+  if (len > 32) return 0; // safety check
   client_id = (uint8_t*)os_zalloc(len + 1);
   CMD_PopArg(&req, client_id, len);
   client_id[len] = 0;
 
   // get username
   len = CMD_ArgLen(&req);
-  if (len > 48) return 0; // safety check
+  if (len > 32) return 0; // safety check
   user_data = (uint8_t*)os_zalloc(len + 1);
   CMD_PopArg(&req, user_data, len);
   user_data[len] = 0;
 
   // get password
   len = CMD_ArgLen(&req);
-  if (len > 48) return 0; // safety check
+  if (len > 32) return 0; // safety check
   pass_data = (uint8_t*)os_zalloc(len + 1);
   CMD_PopArg(&req, pass_data, len);
   pass_data[len] = 0;
