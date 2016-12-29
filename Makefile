@@ -19,8 +19,8 @@
 # The Wifi station configuration can be hard-coded here, which makes esp-link come up in STA+AP
 # mode trying to connect to the specified AP *only* if the flash wireless settings are empty!
 # This happens on a full serial flash and avoids having to hunt for the AP...
-# STA_SSID ?= 
-# STA_PASS ?= 
+# STA_SSID ?=
+# STA_PASS ?=
 
 # --------------- toolchain configuration ---------------
 
@@ -42,8 +42,8 @@ ESPBAUD		?= 9600
 # The Wifi station configuration can be hard-coded here, which makes esp-link come up in STA+AP
 # mode trying to connect to the specified AP *only* if the flash wireless settings are empty!
 # This happens on a full serial flash and avoids having to hunt for the AP...
-# STA_SSID ?= 
-# STA_PASS ?= 
+# STA_SSID ?=
+# STA_PASS ?=
 
 # hostname or IP address for wifi flashing
 ESP_HOSTNAME        ?= arduino
@@ -346,6 +346,11 @@ flash: all
 	  0x00000 "$(SDK_BASE)/bin/boot_v1.4(b1).bin" 0x01000 $(FW_BASE)/user1.bin \
 	  $(ET_BLANK) $(SDK_BASE)/bin/blank.bin
 
+unoflash: all
+	$(Q) $(ESPTOOL) --port $(ESPPORT) --baud 9600 write_flash -ff 80m -fm qio -fs 32m \
+	0x00000 "$(SDK_BASE)/bin/boot_v1.4.bin_rep" 0x1000 $(FW_BASE)/user1.bin 0x3FC000 \
+	$(SDK_BASE)/bin/esp_init_data_default.bin_rep 0x3FE000 $(SDK_BASE)/bin/blank.bin
+
 tools/$(HTML_COMPRESSOR):
 	$(Q) mkdir -p tools
   ifeq ($(OS),Windows_NT)
@@ -389,7 +394,7 @@ ifeq ("$(COMPRESS_W_HTMLCOMPRESSOR)","yes")
 else
 	$(Q) cp -r html/head- html_compressed;
 	$(Q) cp -r html/*.html html_compressed;
-	$(Q) cp -r html/wifi/*.html html_compressed/wifi;	
+	$(Q) cp -r html/wifi/*.html html_compressed/wifi;
 endif
 ifeq (,$(findstring mqtt,$(MODULES)))
 	$(Q) rm -rf html_compressed/mqtt.html
